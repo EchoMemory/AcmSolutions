@@ -1,0 +1,58 @@
+#include<iostream>
+#include<fstream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+struct st{
+  char a,b;
+  int value;
+};
+
+void handle( vector<st>&vec1,vector<st>&vec2){
+  st temp;
+  for(int i=0;i<vec2.size();i++){
+     temp=vec2[i];
+   for(int j=0;;j++){
+      if(j==vec1.size())j=0;
+      if(temp.b=='A'||temp.b=='B'||temp.b=='C'){ break;}
+      if(temp.b==vec1[j].a){  vec1[j].value+=temp.value; temp=vec1[j];}
+   vec2[i]=temp;
+   }
+  }
+   if(vec2.size()>=2)
+   for(int i=1;i<vec2.size();i++)
+      for(int j=0;j<vec2.size()-i;j++){
+        if(vec2[j].value>vec2[j+1].value){
+         temp=vec2[j];
+         vec2[j]=vec2[j+1];
+         vec2[j+1]=temp;
+        }
+        if(vec2[j].value==vec2[j+1].value)
+          if(vec2[j].b>vec2[j+1].b){
+          temp=vec2[j];
+          vec2[j]=vec2[j+1];
+          vec2[j+1]=temp;
+          }
+      }
+    cout<<vec2[0].b<<" "<<vec2[0].value<<endl;
+}   
+
+int main(){
+  
+    int sum;
+     while(cin>>sum){
+      vector<st>vec1,vec2;
+      char a,b;int dis;
+      for(int i=0;i<sum;i++){
+        cin>>a>>b>>dis;   
+st x; 
+x.a=a; x.b=b; x.value=dis;
+        if(a=='T'){vec2.push_back(x);continue;}
+        vec1.push_back(x);
+      }
+     
+      handle(vec1,vec2);
+     }
+ 
+}

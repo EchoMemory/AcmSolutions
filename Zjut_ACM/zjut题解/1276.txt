@@ -1,0 +1,18 @@
+#include<iostream>
+#include<iomanip>
+#include<string>
+using namespace std;
+int main()
+{
+string s;int t;
+while(cin>>s>>t)
+{
+int jin=0;
+for(int i=0;i<s.length();i++)
+{
+jin=jin*10+s[i]-'0';
+jin%=t;
+}
+cout<<jin<<endl;
+}
+}

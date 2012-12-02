@@ -1,0 +1,48 @@
+#include<iostream>
+#include<vector>
+#include<list>
+#include<cmath>
+#include<map>
+#include<algorithm>
+#include<iomanip>
+#include<string>
+using namespace std;
+
+int main()
+{
+	int m;
+	string s;
+	while(cin>>m && m)
+	{
+		int index=-1;
+		int sum=0;
+		vector<vector<int> >a(m,vector<int>(3));
+		for(int i=0;i<m;i++)
+		{
+			cin>>s;
+			if(s=="Canada")
+				index=i;
+			for(int j=0;j<3;j++)
+				cin>>a[i][j],sum+=a[i][j];
+		}
+		if(index<0)
+		{cout<<"Canada cannot win."<<endl;continue;}
+		for(int i=0;i<=2;i++)
+		{
+			for(int j=0;j<=2;j++)
+			{
+				for(int k=0;k<=2;k++)
+				{
+					int da=0;
+					for(int x=0;x<m;x++)
+						da=max(da,a[x][0]*(int)pow(sum*1.0,i)+a[x][1]*(int)pow(sum*1.0,j)+a[x][2]*(int)pow(sum*1.0,k));
+					if(da==a[index][0]*(int)pow(sum*1.0,i)+a[index][1]*(int)pow(sum*1.0,j)+a[index][2]*(int)pow(sum*1.0,k))
+						goto end;
+				}
+			}
+		}
+		cout<<"Canada cannot win."<<endl;continue;
+end:
+		cout<<"Canada wins!"<<endl;
+	}
+}

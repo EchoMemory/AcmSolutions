@@ -1,0 +1,43 @@
+#include<iostream>
+#include<fstream>
+#include<vector>
+#include<algorithm>
+#include<string>
+#include<iomanip>
+using namespace std;
+int main()
+{
+	//ifstream cin("1.txt");
+	//ofstream cout("2.txt");
+	int m,n;
+	while(cin>>m)
+	{
+		vector<int>a(m);
+		int x=0;
+		for(int i=0;i<m;i++)
+		{
+			cin>>a[i];
+			x=max(x,a[i]);
+		}
+		cin>>n;
+		vector<int>b(n);
+		for(int i=0;i<n;i++)cin>>b[i];
+		vector<int>sg(x+1);
+		for(int i=1;i<=x;i++)
+		{
+			int temp[101]={0};
+			for(int j=0;j<n;j++)if(i>=b[j])temp[sg[i-b[j]]]=1;
+			for(int j=0;j<=x;j++)
+				if(!temp[j])
+				{sg[i]=j;break;}
+		}
+		int sum=0;
+		for(int i=0;i<m;i++)
+			sum^=sg[a[i]];
+		if(sum)
+			cout<<"lily";
+		else
+			cout<<"sasnzy";
+		cout<<endl;
+	}
+}

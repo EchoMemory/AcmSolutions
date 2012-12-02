@@ -1,0 +1,33 @@
+#include<iostream>
+#include<string>
+#include<bitset>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	string s,t;
+	while(cin>>s && s!="#")
+	{
+		cin>>t;
+		int sum=0;
+		for(int i=0;i<=s.length()-t.length();i++)
+		{
+			bool flag=1;
+			for(int j=0;j<t.length();j++)
+				if(s[i+j]!=t[j])
+				{
+					flag=0;
+					break;
+				}
+			if(flag)
+			{
+				i+=t.length();
+				i--;
+				sum++;
+			}
+		}
+		cout<<sum<<endl;
+	}
+}
+

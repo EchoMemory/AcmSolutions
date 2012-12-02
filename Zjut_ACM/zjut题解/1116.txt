@@ -1,0 +1,84 @@
+#include<iostream>
+using namespace std;
+int zhong;
+int a[9][9],e[9][9];
+int b[9][10];
+int c[9][10];
+int d[3][3][10];
+int ge;
+int que1[81],que2[81];
+void back(int t)
+{
+	if(t==ge)
+		zhong++;
+	else
+	{
+		int x=que1[t],y=que2[t];
+		int p=x/3,q=y/3;
+		for(int i=1;i<=9;i++)
+		{
+			if( (!b[x][i]) && (!c[y][i]) && (!d[p][q][i]) )
+			{
+				b[x][i]=c[y][i]=d[p][q][i]=1;
+				a[x][y]=i;
+				back(t+1);
+				b[x][i]=c[y][i]=d[p][q][i]=0;
+			}
+		}
+		a[x][y]=0;
+		return;
+	}
+}
+int main()
+{
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{
+		memset(b,0,sizeof(b));
+		memset(c,0,sizeof(c));
+		memset(d,0,sizeof(d));
+		int index=0;
+		zhong=0;
+		for(int i=0;i<9;i++)
+			for(int j=0;j<9;j++)
+				cin>>a[i][j];
+		for(int i=0;i<9;i++)
+			for(int j=0;j<9;j++)
+			{
+				b[i][a[i][j]]=1;
+				c[i][a[j][i]]=1;
+			}
+		for(int i=0;i<3;i++)
+			for(int j=0;j<3;j++)
+			{
+				for(int k=0;k<3;k++)
+					for(int l=0;l<3;l++)
+						d[i][j][a[i*3+k][j*3+l]]=1;
+			}
+	/*	for(int i=0;i<9;i++)
+		{
+			for(int j=0;j<=9;j++)
+				cout<<b[i][j];
+			cout<<endl;
+		}
+		cout<<endl;
+		for(int i=0;i<9;i++)
+		{
+			for(int j=0;j<=9;j++)
+				cout<<c[i][j];
+			cout<<endl;
+		}*/
+		for(int i=0;i<9;i++)
+			for(int j=0;j<9;j++)
+				if(a[i][j]==0)
+				{
+					que1[index]=i;
+					que2[index]=j;
+					index++;
+				}
+		ge=index;
+		back(0);
+		cout<<zhong<<endl;
+	}
+}

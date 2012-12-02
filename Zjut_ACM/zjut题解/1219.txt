@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	unsigned int a,p,m;
+	while(cin>>a>>p>>m&&(a|p||m))
+	{
+		a%=m;
+		unsigned int d=a,res=1;
+		while(p)
+		{
+			while(!(p&1))
+				p>>=1,d=d*d%m;
+			p--;
+			res=res*d%m;
+		}
+		cout<<res<<endl;
+	}
+}

@@ -1,0 +1,72 @@
+#include<iostream>
+#include<vector>
+#include<iomanip>
+#include<fstream>
+#include<cmath>
+#include<cstdio>
+#include<set>
+#include<string>
+#include<map>
+using namespace std;
+map<int,int> zuo(int x)
+{
+	map<int,int> m;
+	for(int i=2;x!=1;)
+		if(x%i) i++;
+		else m[i]++,x/=i;
+		return m;
+}
+map<int,int> jia(map<int,int> &a,map<int,int> &b)
+{
+	map<int,int> x(a);
+	for(map<int,int>::iterator it =b.begin();it!=b.end();it++)
+		x[it->first]+=it->second;
+	return x;
+}
+map<int,int> jian(map<int,int> &a,map<int,int> &b)
+{
+	map<int,int> x(a);
+	for(map<int,int>::iterator it =b.begin();it!=b.end();it++)
+		x[it->first]-=it->second;
+	return x;
+}
+string str(map<int,int> b)
+{
+	string s="1";
+	for(map<int,int>::iterator it =b.begin();it!=b.end();it++)
+		for(int i=1;i<=it->second;i++)
+			for(int temp=0,a=it->first,i=s.length()-1;i>=0||temp;i--,temp/=10)
+				if(i>=0)
+				{
+					temp+=(s[i]-'0')*a;
+					s[i]=char(temp%10+'0');
+
+				}
+				else s=char(temp%10+'0')+s;
+				return s;
+}
+
+int main()
+{
+	//ifstream cin("1.txt");
+	int i,j,k,m,n;
+	vector<map<int,int> > aaa(26*12);
+	for(i=1;i<312;i++)
+		aaa[i]=jia(aaa[i-1],zuo(i+1));
+	while(cin>>n && n)
+	{
+		int sum=0;
+		map<int,int> b;
+		for(i=0;i<n;i++)
+		{
+			cin>>j;
+			sum+=j;
+			b=jia(b,aaa[j-1]);
+
+		}
+		cout<<str(jian(aaa[sum-1],b))<<endl;
+
+	}
+
+
+}

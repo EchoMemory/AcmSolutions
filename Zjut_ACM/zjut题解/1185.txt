@@ -1,0 +1,42 @@
+#include<iostream>
+#include<iomanip>
+#include<string>
+#include<cmath>
+#include<vector>
+#include<map>
+#include<fstream>
+#include<stack>
+using namespace std;
+
+int main()
+{
+	//ifstream cin("1.txt");
+	int m;
+	while(cin>>m)
+	{
+		cout<<setw(11)<<m<<"-->";
+		if(m<0)
+		{
+			cout<<'-';
+			m=-m;
+		}
+		if(m==0)
+		{
+			cout<<0<<endl;
+			continue;
+		}
+		stack<int> a;
+		while(m)
+		{
+			a.push(m%2);
+			m/=2;
+		}
+		while(!a.empty())
+		{
+			cout<<a.top();
+			a.pop();
+		}
+		cout<<endl;
+
+	}
+}

@@ -1,0 +1,35 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<map>
+using namespace std;
+long long int gcd(long long int m,long long int n)
+{
+	if(m<n)
+		return gcd(n,m);
+	if(m%n==0)
+		return n;
+	return gcd(n,m%n);
+}
+int main()
+{
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{
+	long long int a,b,c,d;
+		char y;
+		cin>>a>>y>>b>>c>>y>>d;
+		long long int x=gcd(a,b);
+		a/=x;
+		b/=x;
+		x=gcd(c,d);
+		c/=x;
+		d/=x;
+		cout<<a*c/gcd(a,c);
+		x=gcd(b,d);
+		if(x!=1)
+			cout<<"/"<<x;
+		cout<<endl;
+	}
+}

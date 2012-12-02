@@ -1,0 +1,36 @@
+#include<iostream>
+#include<iomanip>
+#include<vector>
+
+using namespace std;
+
+int main()
+{ int a,i,j;
+vector<int> array;
+while(cin>>a && a!=0)
+{array.push_back(a);}
+
+for(int k=0;k<array.size();k++)
+{if(k!=0)cout<<endl;
+	int mat[30][30]={{0},{0},{0}};
+
+	for(i=0;i<array[k];i++)
+    for(j=0;j<array[k];j++)
+		mat[(array[k]+array[k]-1+j-i*2)%array[k]][(array[k]+(array[k]-1)/2+j-i)%array[k]]=i*array[k]+j+1;
+
+
+
+	for(i=0;i<array[k];i++){
+for(j=0;j<array[k];j++){
+	
+	cout<<setw(3)<<	mat[i][j];
+
+	}
+cout<<endl;
+		}
+
+
+}
+return 0;
+
+}

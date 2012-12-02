@@ -1,0 +1,186 @@
+#include<iostream>
+#include<vector>
+#include<iomanip>
+#include<fstream>
+#include<cmath>
+#include<cstdio>
+#include<set>
+#include<string>
+using namespace std;
+bool a[1000000]={0};
+int main()
+{
+
+	int i,j,k,x,y,z,r,s,t,it;
+	
+
+
+	a[1]=1;
+	a[11]=1;
+	a[111]=1;
+	a[1111]=1;
+	a[11111]=1;
+	a[111111]=1;
+	//100
+	for(i=20;i<100;i+=10)
+	{
+		for(j=0;j<10;j++)
+		{
+			for(k=10;k<i;k+=10)
+				if(a[k+j])
+					break;
+				if(k==i)
+				{
+					a[i+j]=1;
+					break;
+				}
+		}
+	}
+	//1000
+	for(i=100;i<1000;i+=100)
+	{
+		for(j=0;j<100;j+=10)
+		{
+			for(k=0;k<10;k++)
+			{
+				if(j==0)if(a[i/100])continue;
+				if(k==0)if(a[(i+j)/10])continue;
+				
+				for(x=100;x<i;x+=100)if(a[x+j+k])break;
+				if(x<i)continue;
+				
+				for(x=0;x<j;x+=10)if(a[i+x+k])break;
+				
+				if(x==j)
+				{
+					a[i+j+k]=1;
+					break;
+				}
+			}
+		}
+	}
+	//10000
+	for(i=1000;i<10000;i+=1000)
+	{
+		for(j=0;j<1000;j+=100)
+		{
+
+			for(k=0;k<100;k+=10)
+			{
+				for(r=0;r<10;r++)
+				{
+					if(j==0)if(a[i/1000])continue;
+					if(k==0)if(a[(i+j)/100])continue;
+					if(r==0)if(a[(i+j+k)/10])continue;
+					
+					for(x=1000;x<i;x+=1000)if(a[x+j+k+r])break;
+					if(x<i) continue;
+					
+					for(x=0;x<j;x+=100)if(a[i+x+k+r])break;
+					if(x<j) continue;
+					for(x=0;x<k;x+=10)if(a[i+j+x+r])break;
+					if(x==k)
+					{
+						a[i+j+k+r]=1;
+						break;
+					}
+
+				}
+				
+				
+			}
+		}
+	}
+	//100000
+	for(i=10000;i<100000;i+=10000)
+	{
+		for(j=0;j<10000;j+=1000)
+		{
+
+			for(k=0;k<1000;k+=100)
+			{
+				for(r=0;r<100;r+=10)
+				{
+					for(s=0;s<10;s++)
+					{
+						if(j==0)if(a[i/10000])continue;
+					    if(k==0)if(a[(i+j)/1000])continue;
+					    if(r==0)if(a[(i+j+k)/100])continue;
+						if(s==0)if(a[(i+j+k+r)/10])continue;
+						
+						for(x=10000;x<i;x+=10000)if(a[x+j+k+r+s])break;
+					    if(x<i) continue;
+						for(x=0;x<j;x+=1000)if(a[i+x+k+r+s])break;
+						if(x<j) continue;
+						for(x=0;x<k;x+=100)if(a[i+j+x+r+s])break;
+						if(x<k) continue;
+                        for(x=0;x<r;x+=10)if(a[i+j+k+x+s])break;
+						if(x==r)
+						{
+						a[i+j+k+r+s]=1;
+						break;
+						}
+					}
+
+				}
+			}
+		}
+	}
+	//1000000
+	for(i=100000;i<1000000;i+=100000)
+	{
+		for(j=0;j<100000;j+=10000)
+		{
+
+			for(k=0;k<10000;k+=1000)
+			{
+				for(r=0;r<1000;r+=100)
+				{
+					for(s=0;s<100;s+=10)
+					{
+						for(t=0;t<10;t++)
+						{
+							if(j==0)if(a[i/100000])continue;
+							if(k==0)if(a[(i+j)/10000])continue;
+							if(r==0)if(a[(i+j+k)/1000])continue;
+							if(s==0)if(a[(i+j+k+r)/100])continue;
+							if(t==0)if(a[(i+j+k+r+s)/10])continue;
+							
+							for(x=100000;x<i;x+=100000)if(a[x+j+k+r+s+t])break;
+							if(x<i) continue;
+							for(x=0;x<j;x+=10000)if(a[i+x+k+r+s+t])break;
+							if(x<j) continue;
+							for(x=0;x<k;x+=1000)if(a[i+j+x+r+s+t])break;
+							if(x<k) continue;
+							for(x=0;x<r;x+=100)if(a[i+j+k+x+s+t])break;
+							if(x<r) continue;
+							for(x=0;x<s;x+=10)if(a[i+j+k+r+x+t])break;
+							if(x==s)
+							{
+								a[i+j+k+r+s+t]=1;
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	string str;
+	while(cin>>str)
+	{
+		if(str[0]=='0')
+		{
+			cout<<"Yes"<<endl;
+			continue;
+		}
+		int sum=0;
+		for(int zzz=0;zzz<str.length();zzz++)
+			sum=sum*10+str[zzz]-'0';
+		if(a[sum])
+			cout<<"No";
+		else cout<<"Yes";
+		cout<<endl;
+	}
+
+}

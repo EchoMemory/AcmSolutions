@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int m,x,y;
+	while(cin>>m)
+	{
+		cin>>x>>y;
+		long long int res=y;
+		long long int add=x;
+		for(int i=1;i<m;i++)
+		{
+			cin>>x>>y;
+			while(res%x!=y)
+			{
+				res+=add;
+			}
+			add*=x;
+		}
+		if(res)
+			cout<<res<<endl;
+		else
+			cout<<add<<endl;
+	}
+}

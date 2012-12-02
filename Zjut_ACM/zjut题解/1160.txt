@@ -1,0 +1,44 @@
+#include<iostream>
+#include<vector>
+#include<list>
+#include<cmath>
+#include<map>
+#include<algorithm>
+#include<iomanip>
+#include<string>
+using namespace std;
+double x,y;
+double p,q;
+bool flag;
+void back(double a,double b,double m,double n,bool f)
+{
+	double mid=a*(1-p)+m*p;
+	double mid2=b*(1-q)+n*q;
+	if(x<mid && y>mid2)
+	{flag=f;return;}
+	if(x>mid && y<mid2)
+	{flag=f;return;}
+	if(x<mid && y<mid2)
+	{back(a,b,mid,mid2,!f);return;}
+	back(mid,mid2,m,n,!f);return;
+}
+int main()
+{
+	double m,n;
+	int g=1;
+	while(cin>>m>>n>>p>>q && (m||n))
+	{
+		cout<<"Case "<<g++<<":"<<endl;
+		int ci;
+		cin>>ci;
+		for(int i=0;i<ci;i++)
+		{
+			cin>>x>>y;
+			back(0,0,m,n,1);
+			if(flag)
+				cout<<"black"<<endl;
+			else
+				cout<<"white"<<endl;
+		}
+	}
+}

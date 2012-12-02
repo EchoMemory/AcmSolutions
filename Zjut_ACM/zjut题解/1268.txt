@@ -1,0 +1,26 @@
+#include<iostream>
+#include<fstream>
+#include<cmath>
+#include<string>
+#include<vector>
+#include<map>
+#include<algorithm>
+#include<set>
+using namespace std;
+
+int main()
+{
+	int zu;
+	cin>>zu;
+	int a[3];
+	while(zu--)
+	{
+		cin>>a[0]>>a[1]>>a[2];
+		sort(a,a+3);
+		if(a[0]+a[1]>a[2])
+			cout<<"YES";
+		else
+			cout<<"NO";
+		cout<<endl;
+	}
+}

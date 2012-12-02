@@ -1,0 +1,16 @@
+#include<iostream>
+#include<iomanip>
+#include<string>
+#include<map>
+#include<fstream>
+using namespace std;
+int main()
+{
+	int m;
+	while(scanf("%d",&m)!=EOF)
+	{
+		if(m&1)
+			cout<<"Yes"<<endl;
+		else cout<<"No"<<endl;
+	}
+}

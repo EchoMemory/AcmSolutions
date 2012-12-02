@@ -1,0 +1,17 @@
+#include<iostream>
+#include<vector>
+#include<iomanip>
+#include<string>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+	double x;
+	while(cin>>x)
+	{
+		cout<<setiosflags(ios::fixed)<<setprecision(3)<<log(x)<<endl;
+	}
+	
+}
+

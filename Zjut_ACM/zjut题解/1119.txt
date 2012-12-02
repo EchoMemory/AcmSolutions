@@ -1,0 +1,47 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+void move(vector<string> & a,int i,int j)
+{a[i][j]='*';
+if(i>0 && a[i-1][j]=='@')
+move(a,i-1,j);
+if(j>0 && a[i][j-1]=='@')
+move(a,i,j-1);
+if(i<a.size()-1 && a[i+1][j]=='@')
+move(a,i+1,j);
+if(j<a[i].size()-1 && a[i][j+1]=='@')
+move(a,i,j+1);
+
+if(i>0 && j>0 && a[i-1][j-1]=='@')
+move(a,i-1,j-1);
+if(i<a.size()-1 &&j<a[i].size()-1 && a[i+1][j+1]=='@')
+move(a,i+1,j+1);
+if(i<a.size()-1 && j>0 && a[i+1][j-1]=='@')
+move(a,i+1,j-1);
+if(i>0 && j<a[i].size()-1 && a[i-1][j+1]=='@')
+move(a,i-1,j+1);
+
+}
+int main()
+{//ifstream cin("1.txt");
+int m,n;
+while(cin>>m>>n && m)
+{vector<string> aaa(m);
+int i,j;
+for(i=0;i<aaa.size();i++)
+cin>>aaa[i];
+int you=0;
+for(i=0;i<aaa.size();i++)
+for(j=0;j<aaa[i].size();j++)
+if(aaa[i][j]=='@')
+{you++;
+move(aaa,i,j);
+}
+cout<<you<<endl;
+}
+
+return 0;
+}

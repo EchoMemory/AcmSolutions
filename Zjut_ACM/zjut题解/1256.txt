@@ -1,0 +1,19 @@
+#include<iostream>
+#include<cmath>
+#include<vector>
+#include<fstream>
+#include<string>
+#include<set>
+using namespace std;
+int main()
+{
+	double x;
+	int sum=0;
+	while(cin>>x && x)
+	{
+		int y=pow(x,1.0/3);
+		if(pow(y*1.0,3)==x ||pow(y-1.0,3)==x||pow(y+1.0,3)==x)
+			sum++;
+	}
+	cout<<sum<<endl;
+}

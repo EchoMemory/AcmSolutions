@@ -1,0 +1,31 @@
+#include<iostream>
+#include<map>
+using namespace std;
+int sm[12]={0,31,59,90,120,151,181,212,243,273,304,334};
+bool isLeapYear(int n){
+  if(n%4==0&&n%100!=0||n%400==0) return true;
+  return false;
+}
+int Day(string &s){
+   int year = (s[6]-'0')*1000+(s[7]-'0')*100+(s[8]-'0')*10+s[9]-'0';
+   int day = (s[0]-'0')*10+s[1]-'0',
+       month = (s[3]-'0')*10+s[4]-'0';
+   return sm[month-1] + day + (isLeapYear(year) && month>2);
+}
+int main(){
+  for(int N,p=0; cin>>N && N; ){
+    map<string,string> ma1,ma2;
+    for(string s; N-- && cin>>s; ){
+      int year = (s[6]-'0')*1000+(s[7]-'0')*100+(s[8]-'0')*10+s[9]-'0';
+      string ss = s.substr(6,4) + s.substr(3,2) + s.substr(0,2);
+      if(isLeapYear(year)){ s[2]=s[5]='\\'; ma1[ss]=s; }
+      else ma2[ss]=s;
+    }
+    cout<<(p++ ? "\n\n":"");
+    for(map<string,string>::iterator it=ma1.begin(); it!=ma1.end(); ++it)
+      cout<<it->second<<" "<<Day(it->second)<<"\n";
+    if(ma1.size()) cout<<"\n";
+    for(map<string,string>::iterator it=ma2.begin(); it!=ma2.end(); ++it)
+      cout<<it->second<<" "<<Day(it->second)<<"\n";
+  }
+}

@@ -1,0 +1,26 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+bool prime(int x)
+{
+	int temp=(int)sqrt(x*1.0);
+	for(int i=3;i<=temp;i+=2)
+		if(x%i==0)
+			return false;
+		return true;
+}
+int main()
+{int m;
+while(cin>>m && m!=0)
+{int i=m/2;
+if(i%2==0)
+i--;
+	for(;;i-=2)
+	{if(prime(i))
+	{if(prime(m-i))
+	{break;}}
+	}
+cout<<i<<' '<<m-i<<endl;
+}
+ return 0;
+}

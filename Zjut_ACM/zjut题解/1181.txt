@@ -1,0 +1,42 @@
+#include<iostream>
+#include<iomanip>
+#include<string>
+#include<cmath>
+#include<vector>
+#include<fstream>
+using namespace std;
+
+int main()
+{
+	//ifstream cin("1.txt");
+	
+	unsigned int m;
+	while(cin>>m)
+	{
+		if(m<100 || m>=1000)
+		{
+			cout<<"No"<<endl;
+			continue;
+		}
+		if(m/100!=m%10)
+		{
+			cout<<"No"<<endl;
+			continue;
+		}
+		if(m%2==0)
+		{
+			cout<<"No"<<endl;
+			continue;
+		}
+		int x=(int)sqrt(m*1.0);
+		int i;
+		for(i=3;i<=x;i+=2)
+			if(m%i==0)
+				break;
+		if(i>x)
+			cout<<"Yes";
+		else cout<<"No";
+		cout<<endl;
+
+	}
+}

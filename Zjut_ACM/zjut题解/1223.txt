@@ -1,0 +1,85 @@
+#include<iostream>
+#include<vector>
+#include<list>
+#include<cmath>
+#include<map>
+#include<algorithm>
+#include<iomanip>
+#include<string>
+using namespace std;
+int main()
+{
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{
+		vector<vector<string> > a(3,vector<string>(3));
+		vector<int>v(128);
+		vector<int>z(128);
+		for(int i=0;i<3;i++)
+			for(int j=0;j<3;j++)
+				cin>>a[i][j];
+		for(int i=0;i<3;i++)
+			if(a[i][2]=="even")
+			{
+				for(int j=0;j<a[i][0].length();j++)
+					v[a[i][0][j]]=1;
+				for(int j=0;j<a[i][1].length();j++)
+					v[a[i][1][j]]=1;
+			}
+		int x=1;
+		char y='$';	
+		for(char i='A';i<='L';i++)
+		{
+			if(v[i])
+				continue;
+			z[i]=1;
+			bool flag=1;
+			for(int j=0;j<3;j++)
+			{
+				if(a[j][2]=="even")
+					continue;
+				int zuo=0;
+				int you=0;
+				for(int k=0;k<a[j][0].length();k++)
+					zuo+=z[a[j][0][k]];
+				for(int k=0;k<a[j][1].length();k++)
+					you+=z[a[j][1][k]];
+				if(zuo<=you && a[j][2]=="up")
+				{flag=0;break;}
+				if(you<=zuo && a[j][2]=="down")
+				{flag=0;break;}
+			}
+			if(flag)
+			{y=i;goto end;}
+			flag=1;
+			z[i]=-1;
+			for(int j=0;j<3;j++)
+			{
+				if(a[j][2]=="even")
+					continue;
+				int zuo=0;
+				int you=0;
+				for(int k=0;k<a[j][0].length();k++)
+					zuo+=z[a[j][0][k]];
+				for(int k=0;k<a[j][1].length();k++)
+					you+=z[a[j][1][k]];
+				if(zuo<=you && a[j][2]=="up")
+				{flag=0;break;}
+				if(you<=zuo && a[j][2]=="down")
+				{flag=0;break;}
+			}
+			if(flag)
+			{x=0;y=i;goto end;}
+			z[i]=0;
+		}
+end:
+		cout<<y;
+		cout<<" is the counterfeit coin and it is ";
+		if(x)
+			cout<<"heavy.";
+		else
+			cout<<"light.";
+		cout<<endl;
+	}
+}

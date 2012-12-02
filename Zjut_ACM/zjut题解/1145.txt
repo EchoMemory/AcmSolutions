@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int a,b,c,x,y,z;
+	while(cin>>a>>b>>c>>x>>y>>z &&(a||b||c||x||y||z))
+	{
+		if(x*y*z==0)
+		{
+			cout<<x*x+y*y+z*z<<endl;
+			continue;
+		}
+		if(x==a)
+		{
+			int d=min((a+y)*(a+y)+z*z,(a+z)*(a+z)+y*y  );
+			if( (c+y)*a>c*(a+c-z) )
+				d=min(d,(a+c-z)*(a+c-z)+(c+y)*(c+y));
+			if( a*(b+z)>b*(a+b-y))
+				d=min(d,(b+z)*(b+z)+(a+b-y)*(a+b-y));
+			cout<<d<<endl;
+			continue;
+		}
+		if(y==b)
+		{
+			swap(y,x);
+			swap(a,b);
+			int d=min((a+y)*(a+y)+z*z,(a+z)*(a+z)+y*y  );
+			if( (c+y)*a>c*(a+c-z) )
+				d=min(d,(a+c-z)*(a+c-z)+(c+y)*(c+y));
+			if( a*(b+z)>b*(a+b-y))
+				d=min(d,(b+z)*(b+z)+(a+b-y)*(a+b-y));
+			cout<<d<<endl;
+			continue;
+		}
+		swap(z,x);
+		swap(a,c);
+		int d=min((a+y)*(a+y)+z*z,(a+z)*(a+z)+y*y  );
+		if( (c+y)*a>c*(a+c-z) )
+				d=min(d,(a+c-z)*(a+c-z)+(c+y)*(c+y));
+			if( a*(b+z)>b*(a+b-y))
+				d=min(d,(b+z)*(b+z)+(a+b-y)*(a+b-y));
+		cout<<d<<endl;
+
+	}
+}

@@ -1,0 +1,26 @@
+#include<iostream>
+#include<iomanip>
+#include<string>
+#include<map>
+#include<fstream>
+using namespace std;
+long double a[400000]={4};
+int main()
+{
+	int t=1;
+	int x=3;
+	for(int i=1;i<400000;i++)
+	{
+		if(t)
+			a[i]=a[i-1]-4.0L/x;
+		else
+			a[i]=a[i-1]+4.0L/x;
+		x+=2;
+		t^=1;
+	}
+	int m;
+	while(scanf("%d",&m)!=EOF &&m)
+	{
+		cout<<setiosflags(ios::fixed)<<setprecision(8)<<a[m]<<endl;
+	}
+}

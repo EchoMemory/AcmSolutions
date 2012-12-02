@@ -1,0 +1,30 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<fstream>
+#include<algorithm>
+using namespace std;
+int main()
+{ //ifstream cin("1.txt");
+  string s;
+  int i,j;
+  vector<string> aaa;
+  while(getline(cin,s))
+  {for(i=1;i<s.size();i++)
+  {if(s[i-1]=='/' && s[i]=='/')
+  break;}
+  if(i==s.size())
+	  i++;
+  s=s.substr(0,i-1);
+  
+	  aaa.push_back(s);
+   
+
+
+
+  }
+  for(i=0;i<aaa.size();i++)
+  {if(!aaa[i].empty())
+	  cout<<aaa[i]<<endl;}
+  return 0;
+}

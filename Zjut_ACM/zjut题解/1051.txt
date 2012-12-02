@@ -1,0 +1,24 @@
+#include<iostream>
+#include<iomanip>
+#include<cmath>
+using namespace std;
+int main()
+{int a,b,c,d;
+cin>>a>>b>>c>>d;
+int x,y;
+double max=0.0;
+while(cin>>x>>y)
+{int temp=(b-d)*x-(a-c)*y+(a*d-c*b);
+double z=sqrt(1.0*(b-d)*(b-d)+1.0*(a-c)*(a-c));
+if(temp<0)
+temp=-temp;
+double zhi=temp/z;
+if(zhi>max)
+max=zhi;
+}
+cout<<setiosflags(ios::fixed)<<setprecision(3);
+cout<<setiosflags(ios::showpoint);
+cout<<max<<endl;
+return 0;
+}
+

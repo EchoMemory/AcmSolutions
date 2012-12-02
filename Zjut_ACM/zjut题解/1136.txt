@@ -1,0 +1,59 @@
+#include<iostream>
+#include<string>
+#include<list>
+#include<vector>
+#include<map>
+#include<iomanip>
+#include<cmath>
+using namespace std ;
+int x[1000],y[1000],mat[1000][1000];
+int m,n;
+int v[505];
+void dfs(int t,double tt)
+{
+
+	v[t]=1;
+	for(int i=0;i<n;i++)
+		if( !v[i] && mat[t][i]<=tt)
+			dfs(i,tt);
+}
+bool ok(double tt)
+{
+	int temp=0;
+	memset(v,0,sizeof(v));
+	for(int i=0;i<n;i++)
+	{
+		if(v[i])
+			continue;
+		temp++;
+		dfs(i,tt);
+	}
+
+	return bool(temp<=m);
+}
+int main()
+{
+	int zu;
+	scanf("%d",&zu);
+	while(zu--)
+	{
+		scanf("%d%d",&m,&n);
+		for(int i=0;i<n;i++)
+			scanf("%d%d",x+i,y+i);
+		for(int i=0;i<n;i++)
+			for(int j=i+1;j<n;j++)
+				mat[i][j]=mat[j][i]=(x[i]-x[j])*(x[i]-x[j])+(y[i]-y[j])*(y[i]-y[j]);
+		double h=0.0;
+		double r=2e9;
+		double mid;
+		while(h+1e-5<=r)
+		{
+			mid=(h+r)/2;
+			if(ok(mid))
+				r=mid;
+			else
+				h=mid;
+		}
+		cout<<setiosflags(ios::fixed)<<setprecision(2)<<sqrt(mid)<<endl;
+	}
+}

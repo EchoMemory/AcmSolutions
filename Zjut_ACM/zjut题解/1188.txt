@@ -1,0 +1,28 @@
+#include<iostream>
+#include<iomanip>
+#include<string>
+#include<cmath>
+#include<vector>
+#include<map>
+#include<fstream>
+using namespace std;
+
+int main()
+{
+	//ifstream cin("1.txt");
+	string s,t;
+	int m;
+	int x=0;
+	while(cin>>s>>m>>t)
+	{
+		int a=0;
+		if(m==25)
+			a=1;
+		if(t[t.length()-1]=='*')
+			a*=2;
+		x+=a;
+		
+	}
+	cout<<x<<endl;
+	
+}

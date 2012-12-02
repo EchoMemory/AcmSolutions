@@ -1,0 +1,60 @@
+#include<iostream>
+#include<vector>
+#include<iomanip>
+#include<sstream>
+#include<string>
+#include<map>
+#include<stack>
+#include<fstream>
+#include<cmath>
+#include<algorithm>
+#include<list>
+using namespace std;
+struct point
+{point(int a=0,int b=0,int c=0):x(a),y(b),z(c){}int x,y,z;};
+bool operator<(const point &a,const point &b)
+{return (a.x!=b.x)?(a.x<b.x):(a.y!=b.y?a.y<b.y:a.z<b.z);}
+int dis(const point &a,const point &b)
+{
+	return (a.x-b.x)*(a.x-b.x)+
+		(a.y-b.y)*(a.y-b.y)+
+		(a.z-b.z)*(a.z-b.z);
+}
+struct pos
+{int a,b;
+pos(int i=0,int j=0):a(i),b(j){}
+};
+int main()
+{
+	for(int n,w=0;cin>>n && n;)
+	{
+		vector<point>pa(n);
+		vector<pos> r;
+		for(int i=0;i<n;i++)
+			cin>>pa[i].x>>pa[i].y>>pa[i].z;
+		sort(pa.begin(),pa.end());
+		int m=1<<30;
+		for(int i=0;i<n;i++)
+			for(int j=i+1;j<n;j++)
+			{
+				int k=dis(pa[i],pa[j]);
+				if(k==m)
+					r.push_back(pos(i,j));
+				else
+					if(k<m)
+					{
+						r.clear();
+						r.push_back(pos(i,j));
+						m=k;
+					}
+			}
+		if(w++)
+			cout<<endl;
+		for(int i=0;i<r.size();i++)
+		{
+			cout<<"("<<pa[r[i].a].x<<","<<pa[r[i].a].y<<","<<pa[r[i].a].z<<") ("
+				<<pa[r[i].b].x<<","<<pa[r[i].b].y<<","<<pa[r[i].b].z<<")"<<endl;
+		}
+
+	}
+}

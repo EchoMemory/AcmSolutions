@@ -1,0 +1,70 @@
+#include<iostream>
+#include<list>
+#include<string>
+#include<fstream>
+using namespace std;
+int main()
+{//ifstream cin("1.txt");
+
+string s;
+while(cin>>s){
+int i;
+
+list<int> aaa;
+list<char> bbb;
+int r=0;
+for(i=0;i<s.length();i++)
+{if(!isdigit(s[i]))
+{	aaa.push_back(r);
+bbb.push_back(s[i]);
+r=0;
+}
+else	{r*=10;
+r+=s[i]-'0';
+}
+	
+
+}	aaa.push_back(r);
+list<int>::iterator ita=aaa.begin();
+list<char>::iterator itb=bbb.begin();
+for(ita=aaa.begin(),itb=bbb.begin();itb!=bbb.end();)
+{int temp=*ita;
+if(*itb=='*')
+{
+aaa.erase(ita++);
+*ita*=temp;
+bbb.erase(itb++);
+continue;}
+if(*itb=='/')
+{aaa.erase(ita++);
+*ita=temp/ *ita;
+bbb.erase(itb++);
+continue;}
+itb++;
+ita++;
+}
+for(ita=aaa.begin(),itb=bbb.begin();itb!=bbb.end();)
+{int temp=*ita;
+if(*itb=='+')
+{
+aaa.erase(ita++);
+*ita+=temp;
+bbb.erase(itb++);
+continue;}
+if(*itb=='-')
+{aaa.erase(ita++);
+*ita=temp- *ita;
+bbb.erase(itb++);
+continue;}
+itb++;
+ita++;
+}
+
+cout<<aaa.front()<<endl;
+
+}
+return 0;
+
+
+
+}

@@ -1,0 +1,25 @@
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+int main()
+{string a,b;
+while(cin>>a>>b)
+{if(a.size()<b.size())
+{cout<<"No"<<endl;
+continue;}
+int cha=a.size()-b.size();
+bool aaa=false;
+for(int i=0;i<=cha;i++)
+{string s=a.substr(i,b.size());
+if(s==b)
+{aaa=true;
+break;}
+
+}
+if(aaa)
+cout<<"Yes"<<endl;
+else cout<<"No"<<endl;
+}
+return 0;
+}

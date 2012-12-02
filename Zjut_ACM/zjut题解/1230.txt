@@ -1,0 +1,54 @@
+#include<iostream>
+#include<vector>
+#include<cmath>
+#include<iomanip>
+#include<algorithm>
+using namespace std;
+vector<int> a(6);
+vector<int> b;
+vector<bool> c;
+int m;
+void back(int t)
+{
+	if(t>=6)
+	{
+		cout<<b[a[0]];
+		for(int i=1;i<6;i++)
+			cout<<" "<<b[a[i]];
+		cout<<endl;
+	}
+	else
+	{
+		if(t==0)
+		{
+			for(int i=0;i<=m-6;i++)
+			{
+				a[t]=i;
+				back(t+1);
+			}
+		}
+		else
+		{
+			for(int i=a[t-1]+1;i<=m-6+t;i++)
+			{
+				a[t]=i;
+				back(t+1);
+			}
+		}
+	}
+}
+int main()
+{
+	int ge=0;
+	while(cin>>m && m)
+	{
+		if(ge++)
+			cout<<endl;
+		b.resize(m);
+		c=vector<bool>(m,0);
+		for(int i=0;i<m;i++)
+			cin>>b[i];
+		sort(b.begin(),b.end());
+		back(0);
+	}
+}

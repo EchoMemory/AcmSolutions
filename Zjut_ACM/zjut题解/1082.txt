@@ -1,0 +1,30 @@
+#include<iostream>
+#include<algorithm>
+#include<string>
+
+using namespace std;
+int main()
+{int n;
+cin>>n;
+for(int i=0;i<n;i++)
+{char array[500];
+cin>>array;
+int m=strlen(array);
+if(array[0]>'9'||array[0]<'0')
+{cout<<array[0];
+for(int j=1;j<m;j++)
+cout<<array[m-j];
+cout<<endl;
+
+
+}
+else{
+for(int k=0;k<m;k++)
+cout<<array[m-k-1];
+cout<<endl;
+}
+}
+
+
+return 0;
+}

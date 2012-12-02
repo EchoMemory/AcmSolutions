@@ -1,0 +1,63 @@
+#include<iostream>
+#include<vector>
+#include<cmath>
+#include<algorithm>
+using namespace std;
+const int big=999999999;
+int xiao=999999999;
+int n;
+bool com(pair<int,int>x,pair<int,int>y)
+{
+	return x.first*1.0/x.second<y.first*1.0/y.second;
+}
+void back(int t,vector<pair<int,int> > &a,vector<int>& c,int he,int now)
+{
+	if(he==0)
+	{
+		if(now<xiao)
+			xiao=now;
+		return;
+	}
+
+	if(t>=n)
+	{
+		return;
+	}
+	else
+	{
+		for(int i=he/a[t].second;i>=0;i--)
+		{
+			c[t]=i;
+			if(now+he*a[t].first/a[t].second <=xiao)
+				back(t+1,a,c,he-i*a[t].second,now+i*a[t].first);
+else break;
+		}
+
+	}
+}
+int main()
+{
+	int zu;
+	scanf("%d",&zu);
+	while(zu--)
+	{
+		xiao=999999999;	
+		int bbb,he;
+		scanf("%d %d",&bbb,&he);
+		he-=bbb;
+		cin>>n;
+		vector<pair<int,int> > a(n);
+		for(int i=0;i<n;i++)
+			scanf("%d %d",&a[i].first,&a[i].second);
+		sort(a.begin(),a.end(),com);
+	
+		vector<int> c(n,0);
+		back(0,a,c,he,0);
+		if(xiao<999999999)
+		{
+			cout<<"The minimum amount of money in the piggy-bank is "<<xiao<<".\n";
+		}
+		else
+			cout<<"This is impossible.\n";
+	}
+}

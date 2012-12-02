@@ -1,0 +1,56 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int m;
+	cin>>m;
+	int shu;
+	bool add=1;
+	int x;
+	int sum=0;
+	cin>>shu;
+	for(int i=1;i<m;i++)
+	{
+		cin>>x;
+		if(add)
+		{
+			if(x<shu)
+			{
+				sum+=shu;
+				add=0;
+				
+			}
+			else 
+			{
+				shu=x;
+
+			}
+			shu=x;
+			continue;
+		}
+		else
+		{
+			if(x>shu)
+			{
+				sum-=shu;
+				add=1;
+				
+			}
+			else 
+			{
+				shu=x;
+
+			}
+			shu=x;
+			
+		}
+
+
+
+	}
+	
+	if(add)
+	{sum+=shu;
+	}
+	cout<<sum<<endl;
+}

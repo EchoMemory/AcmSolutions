@@ -1,0 +1,42 @@
+#include<iostream>
+#include<vector>
+#include<string>
+using namespace std;
+int a,b,c,d;
+double x,y,z;
+int main()
+{
+	int m;
+	int g=0;
+	while(cin>>m&& m)
+	{
+		if(g++)
+			cout<<endl;
+		cin>>a>>b>>c>>d;
+		//y-d/d-b=x-c/c-a;
+		x=d-b;
+		y=a-c;
+		z=d*(c-a)-c*(d-b);
+	//	cout<<x<<" "<<y<<" "<<z<<endl;
+		double p=1e20;
+		vector<vector<int> >v(m,vector<int>(2));
+		vector<double>res(m);
+		int i,j,k;
+		for(i=0;i<m;i++)
+		{
+			cin>>v[i][0]>>v[i][1];
+			res[i]=x*v[i][0]+y*v[i][1]+z;
+			if(res[i]<0)
+				res[i]=-res[i];
+		//	res[i]/=sqrt(x*x+y*y);
+		//	cout<<res[i]<<endl;
+			if(p>res[i])
+				p=res[i];
+		}
+		for(i=0;i<m;i++)
+		{
+			if(res[i]==p)
+				cout<<v[i][0]<<" "<<v[i][1]<<endl;
+		}
+	}
+}

@@ -1,0 +1,12 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+int a[256]={0};
+char x;
+while(cin>>x && x!='#')
+a[x]++;
+for(char i='a';i<='z';i++)
+cout<<i<<" "<<a[i]<<endl;
+
+}

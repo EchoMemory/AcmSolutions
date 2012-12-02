@@ -1,0 +1,44 @@
+#include<iostream>
+#include<iomanip>
+#include<string>
+#include<cmath>
+#include<vector>
+#include<map>
+#include<fstream>
+#include<stack>
+using namespace std;
+
+int main()
+{
+	//ifstream cin("1.txt");
+//	ofstream cout("2.txt");
+	unsigned int m;
+	while(cin>>m)
+	{
+		bool a=0,b=0,c=0;
+		if(m%3==0)
+			a=1;
+		if(m%5==0)
+			b=1;
+		if(m%7==0)
+			c=1;
+		cout<<m<<"-->";
+		if(a)
+			cout<<3;
+		if(b)
+		{
+			if(a)
+				cout<<',';
+			cout<<5;
+		}
+		if(c)
+		{
+			if(a||b)
+				cout<<',';
+			cout<<7;
+		}
+		if(!(a||b||c))
+		cout<<"None";
+		cout<<endl;
+	}
+}

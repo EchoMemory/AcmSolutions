@@ -1,0 +1,31 @@
+#include<iostream>
+#include<cmath>
+#include<vector>
+#include<fstream>
+#include<string>
+using namespace std;
+int main()
+{
+	int x;
+	cin>>x;
+	while(x--)
+	{
+		int y;
+		cin>>y;
+		int ge=0;
+		int z=0;
+		while(y)
+		{
+			if(y%2==1)
+			{
+				if(ge++)
+					cout<<" ";
+				cout<<z;
+			}
+			z++;
+			y/=2;
+		}
+		cout<<endl;
+		
+	}
+}

@@ -1,0 +1,45 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int main()
+{int geshu;
+while(cin>>geshu && geshu!=0)
+{bool a[1000][4]={{false}};
+int b[1000];
+int i;
+for(i=0;i<geshu;i++)
+cin>>b[i];
+sort(b,b+geshu);
+reverse(b,b+geshu);
+int m;
+for(i=0;i<geshu;i++)
+ for(int j=b[i];j>0;j/=10)
+ {m=j%10;
+if(m==2)
+	 a[i][0]=true;
+else if(m==3)
+	 a[i][1]=true;
+else if(m==5)
+	 a[i][2]=true;
+else if(m==7)
+	 a[i][3]=true;
+
+}
+ int aaa=b[0];
+ int max=0;
+ for(int k=0;k<geshu;k++)
+ {int sum=0;
+ for(int l=0;l<4;l++)
+ if(a[k][l])
+	 sum++;
+ if(sum>=max)
+ {max=sum;
+ aaa=b[k];}
+ }
+cout<<aaa<<endl;
+
+}
+ 
+	return 0;
+
+}

@@ -1,0 +1,29 @@
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+int main()
+{
+int m;
+cin>>m;
+double a;
+int b;
+vector<bool> array(m);int x=0;
+while(m)
+{
+cin>>a>>b;
+double cha;
+cha=double(a-b);
+
+if(cha>=0.5||cha<-0.5)
+array[x]=false;
+else array[x]=true;
+x++;
+m--;
+}
+for(int j=0;j<x;j++)
+if(array[j])
+cout<<"Correct"<<endl;
+else cout <<"Not Correct"<<endl;
+return 0;
+}

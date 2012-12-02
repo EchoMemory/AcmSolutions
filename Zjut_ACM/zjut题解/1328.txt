@@ -1,0 +1,29 @@
+#include<iostream>
+#include<iomanip>
+#include<string>
+#include<map>
+#include<fstream>
+using namespace std;
+int main()
+{
+	//ifstream cin("1.txt");
+	string s;
+	while(cin>>s)
+	{
+		map<string,int> mp;
+		if(s=="#")
+			goto end;
+		if(s[0]=='@')
+			mp[s]++;
+		while(cin>>s&& s!="#")
+			if(s[0]=='@')
+				mp[s]++;
+end:
+		int x=0;
+		string t;
+		for(map<string,int>::iterator it=mp.begin();it!=mp.end();it++)
+			if(it->second>x)
+			{x=it->second;t=it->first;}
+			cout<<t.substr(1,t.length()-1)<<endl;
+	}
+}

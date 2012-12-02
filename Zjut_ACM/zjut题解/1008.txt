@@ -1,0 +1,28 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main()
+{ 
+int a,b,i,j;
+char array[100][100];
+vector<int> aaa;
+while(cin>>a>>b && !(a==0 && b==0))
+{int sum=0;
+       for(i=0;i<a;i++)
+       for(j=0;j<b;j++)
+	       cin>>array[i][j];
+	   for(i=0;i<a;i++)
+       for(j=0;j<b;j++)
+	       if(array[i][j]=='*')
+			   sum++;
+		   aaa.push_back(sum);
+}
+for(i=0;i<aaa.size();i++)
+cout<<aaa[i]<<endl;
+
+
+return 0;
+
+
+}

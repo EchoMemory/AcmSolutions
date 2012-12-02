@@ -1,0 +1,36 @@
+#include<iostream>
+#include<vector>
+#include<list>
+#include<cmath>
+#include<map>
+#include<algorithm>
+#include<iomanip>
+#include<string>
+using namespace std;
+int parse(char str[])
+{
+	int ans = ((str[0] - '0')*10 + (str[1] - '0'))*3600;
+	ans += ((str[3] - '0')*10 + (str[4] - '0')) * 60;
+	ans += (str[6] - '0')*10 + (str[7] - '0');
+	return ans;
+}
+
+int main()
+{
+	char in[10];
+	while(scanf("%s",in) != EOF&&in[0] != '-')
+	{
+		int t[6];
+		t[1] = parse(in);
+		for(int i= 2;i <= 5;i ++)
+		{
+			scanf("%s",in);
+			t[i] = parse(in);
+		}
+		double tmp = (t[3] - t[1])*1.0/(t[4] - t[1])*(t[5] - t[2])*1.0/(t[3] - t[2]);
+		double tt = (t[5] - tmp*t[4])/(1-tmp);
+		int ttt = (int)(tt + 0.5);
+		printf("%.2d:%.2d:%.2d\n",(ttt/3600)%24,(ttt%3600)/60,ttt%60);
+	}
+	return 0;
+}

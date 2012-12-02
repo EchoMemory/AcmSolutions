@@ -1,0 +1,59 @@
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+#include<string>
+using namespace std;
+int main()
+{
+	int a,b;
+	char c;
+	while(cin>>a>>c>>b)
+	{
+		cout<<'.';
+		string s(100,' ');
+		for(int i=0;i<100;i++)
+		{
+			a*=3;
+			s[i]=a/b+'0';
+			a%=b;
+		}
+		if(s[10]<'2')
+		{
+			cout<<s.substr(0,10)<<endl;
+			continue;
+		}
+		int jin=1;
+		for(int i=9;i>=0;i--)
+		{
+			jin=s[i]-'0'+jin;
+			s[i]=jin%3+'0';
+			jin/=3;
+		}
+		cout<<s.substr(0,10)<<endl;
+
+
+
+
+
+
+
+
+
+		//long double jieguo=a/b;
+		////cout<<jieguo<<endl;
+		//long double sum=0.0;
+		//for(int i=1;i<=100;i++)
+		//{
+		//	sum+=
+		//		((int)(jieguo*3))/pow(10.0,i);
+		//	jieguo=jieguo*3-((int)(jieguo*3));
+		//}
+		//long long int x=(long long int) (sum*pow(10.0,11));
+		//if(x%10==2)
+		//	cout<<'.'<<setfill('0')<<setw(10)<<x/10+1<<endl;
+		//else
+		//	cout<<'.'<<setfill('0')<<setw(10)<<x/10<<endl;
+		////cout<<(long long int) (sum*pow(10.0,11))<<endl;
+		////cout<<setiosflags(ios::fixed)<<setprecision(10)<<sum<<endl;
+	}
+}

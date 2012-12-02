@@ -1,0 +1,49 @@
+#include<iostream>
+#include<fstream>
+#include<vector>
+#include<algorithm>
+#include<string>
+#include<iomanip>
+using namespace std;
+int main()
+{
+	//ifstream cin("1.txt");
+	//ofstream cout("2.txt");
+	string s,t;
+	while(cin>>s>>t)
+	{
+		if(s.length()!=t.length())
+		{cout<<"No"<<endl;continue;}
+		bool flag=1;
+		int i,j;
+		for(i=0;i<s.length()&&flag;i++)
+		{
+			for(j=0;j<s.length();j++)
+				if(s[(i+j)%s.length()]!=t[j])
+					break;
+			if(j==s.length())
+				flag=0;
+		}
+		if(!flag)
+		{
+			cout<<"Yes"<<endl;
+			continue;
+		}
+		reverse(s.begin(),s.end());
+		flag=1;
+		for(i=0;i<s.length()&&flag;i++)
+		{
+			for(j=0;j<s.length();j++)
+				if(s[(i+j)%s.length()]!=t[j])
+					break;
+			if(j==s.length())
+				flag=0;
+		}
+		if(!flag)
+		{
+			cout<<"Yes"<<endl;
+			continue;
+		}
+		cout<<"No"<<endl;
+	}
+}

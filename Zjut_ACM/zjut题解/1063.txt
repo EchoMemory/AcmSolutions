@@ -1,0 +1,39 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+using namespace std;
+int main()
+{//ifstream cin("1.txt");
+int i,j;
+int geshu,w,h;
+int aa,bb;
+while(cin>>geshu &&geshu)
+{bool aaa[100][100]={{0}};
+cin>>w>>h;
+for(i=0;i<geshu;i++)
+{cin>>aa>>bb;
+aaa[aa-1][bb-1]=1;}
+int x,y;
+cin>>x>>y;
+int max=0;
+int a,b;
+
+for(i=0;i<=w-x;i++)
+for(j=0;j<=h-y;j++)
+{int temp=0;
+{for(a=0;a<x;a++)
+for(b=0;b<y;b++)
+if(aaa[i+a][j+b])
+temp++;}
+if(temp>max)
+max=temp;
+}
+
+
+
+cout<<max<<endl;
+
+
+}
+return 0;
+}

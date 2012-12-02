@@ -1,0 +1,48 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main()
+{ //ifstream cin("1.txt");
+  int m;
+  while(cin>>m)
+  {if(m==1)
+   {int qe;
+    cin>>qe;
+	cout<<"Jolly"<<endl;
+    continue;
+   }
+ 
+   vector<int> aaa(m);
+   vector<bool> bbb(m-1,false);
+   int i;
+   for(i=0;i<m;i++)
+   {cin>>aaa[i];
+   }
+   for(i=1;i<m;i++)
+   {int temp=aaa[i]-aaa[i-1];
+    if(temp<0)
+	   temp=-temp;
+	if(temp==0 || temp>=m)
+		break;
+    bbb[temp-1]=true;
+   }
+   if(i<m)
+   {cout<<"Not jolly"<<endl;
+    continue;
+   }
+   
+   for(i=1;i<m;i++)
+   if(!bbb[i-1])
+       break;
+   if(i==m)
+	  cout<<"Jolly";
+   else cout<<"Not jolly";	  
+	  cout<<endl;
+   
+  }
+
+  return 0;
+}

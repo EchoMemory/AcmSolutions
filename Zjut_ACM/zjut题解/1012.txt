@@ -1,0 +1,35 @@
+#include<iostream>
+#include<iomanip>
+
+using namespace std;
+int main()
+{ 
+ int array[ 11 ][ 11 ];
+array[0][0]=array[1][0]=array[1][1]=
+array[2][2]=array[3][3]=array[4][4]=
+array[5][5]=array[6][6]=array[7][7]=
+array[8][8]=array[9][9]=array[2][0]=
+array[3][0]=array[4][0]=array[10][10]=
+array[5][0]=array[6][0]=array[7][0]=
+array[8][0]=array[9][0]=array[10][0]=1;
+for( int a = 2;a < 11;a++)
+for(int b=1;b<a;b++)
+array[a][b]=array[a-1][b]+array[a-1][b-1];
+int m;
+	while(cin>>m)
+	{
+		
+	for(int i=0;i<m;i++)
+	{for(int k=0;k<3*i+2;k++)
+	cout<<' ';
+	cout <<'1';
+	for(int j=1;j<m-i;j++)
+	{cout<<' '<<' '<<' '<<setw(3)<<array[m-i-1][j];
+	}
+     cout<<endl;
+	}
+
+	}
+	
+return 0;
+}

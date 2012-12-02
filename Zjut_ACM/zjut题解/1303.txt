@@ -1,0 +1,27 @@
+#include<iostream>
+#include<vector>
+#include<cmath>
+#include<algorithm>
+#include<iomanip>
+#include<string>
+#include<fstream>
+using namespace std;
+int main()
+{
+	string s;
+	int x=0;
+	while(cin>>s)
+	{
+		int a,b,c;
+		a=count(s.begin(),s.end(),'6');
+		b=count(s.begin(),s.end(),'8');
+		c=count(s.begin(),s.end(),'4');
+		if(c)
+		{continue;}
+		if(a+b<5)
+			continue;
+		cout<<s<<endl;
+		x++;
+	}
+	cout<<x<<endl;
+}

@@ -1,0 +1,50 @@
+#include<iostream>
+using namespace std;
+int a[15][15];
+int back(int m,int n,int k)
+{
+	if(n==0 ||m==n)
+		return 1;
+	if(n>m)return 0;
+	if(k==1)
+		return a[m][n]%5;
+	if(m<k)
+		return back(m,n,k/5);
+	int x,y;
+	x=m/k;y=n/k;
+	return a[x][y]*back(m%k,n%k,k/5)%5;
+}
+int back2(int m,int n,int k)
+{
+	if(n==0 ||m==n)
+		return 1;
+	if(n>m)return 0;
+	if(k==1)
+		return a[m][n]&1;
+	if(m<k)
+		return back2(m,n,k>>1);
+	int x,y;
+	x=m/k;y=n/k;
+	return a[x][y]*back2(m%k,n%k,k>>1)&1;
+}
+int main()
+{	
+	a[0][0]=a[1][0]=a[1][1]=1;
+	for(int i=2;i<15;i++)
+	{
+		a[i][0]=1;
+		for(int j=1;j<i;j++)
+			a[i][j]=(a[i-1][j]+a[i-1][j-1])%10;
+		a[i][i]=1;
+	}
+	int p5[20]={1};
+	for(int i=1;i<20;i++)
+		p5[i]=p5[i-1]*5;
+	int p[2][5];
+	for(int i=0;i<10;i++)
+		p[i%2][i%5]=i;
+	int m,n;
+	while(cin>>m>>n)
+		cout<<p[back2(m,n,1<<29)][back(m,n,p5[12])]<<endl;
+
+}

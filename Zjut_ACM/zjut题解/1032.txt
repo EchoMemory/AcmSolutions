@@ -1,0 +1,14 @@
+#include<iostream>
+
+using namespace std;
+int main()
+{int m;
+while(cin>>m)
+{int temp=m*m-m+1;
+cout<<temp;
+for(int i=1;i<m;i++)
+cout<<'+'<<temp+2*i;
+
+cout<<endl;}
+return 0;
+}

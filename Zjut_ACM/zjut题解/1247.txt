@@ -1,0 +1,38 @@
+#include<iostream>
+#include<fstream>
+#include<cmath>
+#include<string>
+#include<set>
+using namespace std;
+
+int main()
+{
+	//ifstream cin("2.txt");
+	int x;
+	int g=0;
+	while(cin>>x)
+	{
+		if(g++)
+			cout<<endl;
+		set<int> a;
+		int y;
+		for(int i=0;i<x;i++)
+		{
+			cin>>y;
+			a.insert(y);
+		}
+		cout<<a.size()<<endl;
+		int shu=0;
+		for(set<int>::iterator it=a.begin();it!=a.end();it++)
+		{
+			if(shu%10!=0)
+				cout<<" ";
+			shu++;
+			cout<<*it;
+			if(shu%10==0)
+				cout<<endl;
+		}
+		if(shu%10)
+				cout<<endl;
+	}
+}

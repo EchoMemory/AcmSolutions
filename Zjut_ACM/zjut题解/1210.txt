@@ -1,0 +1,13 @@
+#include<iostream>
+using namespace std;
+int main()
+{int m;
+while(cin>>m)
+{cout<<m<<"^3=";
+int i=m*m-m+1;
+for(int x=1;x<m;x++)
+{cout<<i<<"+";
+i+=2;
+}
+cout<<i<<endl;}
+}

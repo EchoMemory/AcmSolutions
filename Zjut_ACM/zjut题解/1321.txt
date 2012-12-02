@@ -1,0 +1,93 @@
+#include<iostream>
+using namespace std;
+int m;
+int a[20][20];
+int b[20];
+bool flag;
+void back(int t)
+{
+	if(flag)
+		return ;
+	if(t==m)
+	{
+		bool flag1=1;
+		for(int i=0;i<m;i+=2)
+		{
+			if(!a[b[i]][b[i+1]])
+			{flag1=0;break;}
+		}
+		if(flag1)
+		{flag=1;return;}
+	}
+	else
+	{
+		for(int i=t;i<m;i++)
+		{
+			swap(b[i],b[t]);
+			if(t&1)
+			{
+				if(a[b[t]][b[t-1]])
+					back(t+1);
+			}
+			else
+			{
+				bool flag1=0;
+				for(int j=t+1;j<m;j++)
+					if(a[b[t]][b[j]])
+					{flag1=1;break;}
+				if(flag1)
+					back(t+1);
+			}
+			if(flag)return ;
+			swap(b[i],b[t]);
+		}
+	}
+}
+int main()
+{
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{
+		cin>>m;
+		for(int i=0;i<m;i++)
+			for(int j=0;j<m;j++)
+				cin>>a[i][j];
+		for(int i=0;i<m;i++)
+			for(int j=0;j<m;j++)
+				if(a[i][j]==0)
+					a[j][i]=0;
+		for(int i=0;i<m;i++)
+			a[i][i]=0;
+		bool ok=0;
+		for(int i=0;i<m;i++)
+		{
+			bool flag1=0;
+			for(int j=0;j<m;j++)
+				if(a[i][j])
+				{
+					flag1=1;
+					break;
+				}
+			if(!flag1)
+			{
+				ok==1;
+				break;
+			}
+		}
+		if(ok)
+		{
+			cout<<"No"<<endl;
+			continue;
+		}
+		for(int i=0;i<m;i++)
+			b[i]=i;
+		flag=0;
+		back(1);
+		if(flag)
+			cout<<"Yes"<<endl;
+		else
+			cout<<"No"<<endl;
+
+	}
+}

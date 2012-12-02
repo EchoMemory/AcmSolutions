@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+int x;
+while(cin>>x && x)
+{
+int sum=0,sum1=0,sum2=0;
+int t=x;
+while(t>0)
+{
+sum+=t%10;
+t/=10;
+} t=x;
+while(t>0)
+{
+sum1+=t%12;
+t/=12;
+} t=x;
+while(t>0)
+{
+sum2+=t%16;
+t/=16;
+}
+if(sum==sum1 &&sum==sum2)
+cout<<x<<" is a Sky Number."<<endl;
+else
+cout<<x<<" is not a Sky Number."<<endl;
+}
+}

@@ -1,0 +1,14 @@
+#include<iostream>
+using namespace std;
+struct A{
+  int x,y;
+} a[10000];
+int main(){
+  for(int i=2; i<100; i++){
+    int t=i*i;
+    for(int j=2; t<10000; j++,t*=i)
+      a[t].x=i, a[t].y=j;
+  }
+  for(int n; cin>>n && n; )
+    cout<<a[n].x<<" "<<a[n].y<<"\n";
+}

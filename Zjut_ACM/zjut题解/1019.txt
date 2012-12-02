@@ -1,0 +1,39 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main()
+{ //ifstream cin("1.txt");
+  int zu;
+  cin>>zu;
+  while(zu)
+  {zu--;
+  int m;
+  cin>>m;
+  vector<int> aaa(m);
+  int i;
+  for(i=0;i<m;i++)
+	  cin>>aaa[i];
+  int a,b,c,d,e;
+  cin>>a>>b>>c>>d>>e;
+  int liqi=e-d;
+  int cishu=c/(a+b);
+  sort(aaa.begin(),aaa.end());
+  reverse(aaa.begin(),aaa.end());
+  int sum=0;
+  if(cishu>m)
+	  cishu=m;
+  for(i=0;i<cishu;i++)
+	  sum+=aaa[i];
+  if(sum>=liqi)
+	  cout<<"Tyr is great!";
+	  else cout<<"Tyr is not so great!";
+	  cout<<endl;
+
+
+  }
+  
+  return 0;
+}

@@ -1,0 +1,36 @@
+#include<iostream>
+#include<vector>
+#include<iomanip>
+#include<string>
+using namespace std;
+
+struct rgb
+{
+	int r,g,b;
+};
+int main()
+{
+	vector<rgb>a(16);
+	int r,g,b;
+	for(int i=0;i<16;i++)
+		cin>>a[i].r>>a[i].g>>a[i].b;
+	while(cin>>r>>g>>b && !(r==-1 && g==-1 && b==-1))
+	{
+		int index=0;
+		int mi=99999999;
+		for(int i=0;i<16;i++)
+		{
+			int dis=(a[i].r-r)*(a[i].r-r)+(a[i].g-g)*(a[i].g-g)+(a[i].b-b)*(a[i].b-b);
+			if(dis<mi)
+			{	
+				mi=dis;
+				index=i;
+			}
+		}
+		cout<<"("<<r<<","<<g<<","<<b<<") maps to ("<<a[index].r<<","<<a[index].g<<","<<a[index].b<<")\n";
+
+
+	}
+	
+}
+

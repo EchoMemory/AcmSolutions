@@ -1,0 +1,23 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	int n;
+	
+	vector<int> array;
+	while(cin>>n && n!=0)
+	{int temp;
+	temp=n%3;
+	
+		array.push_back(temp);
+	
+
+	}
+
+	for(int i=0;i<array.size();i++)
+	{if(array[i]==1 || array[i]==2)
+		cout<<"ODD"<<endl;
+	else cout<<"EVEN"<<endl;}
+	 return 0;
+}

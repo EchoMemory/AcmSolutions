@@ -1,0 +1,66 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<fstream>
+#include<list>
+#include<queue>
+#include<map>
+#include<string>
+#include<cmath>
+#include<set>
+#include<stack>
+#include<iomanip>
+using namespace std;
+#define MAXN 100000
+#define sig(x) ((x)>0?1:-1)
+#define abs(x) ((x)>0?(x):-(x))	
+#define _ufind_run(x) for(;p[t=abs(x)];x=sig(x)*p[abs(x)],p[t]=sig(p[t])*(p[abs(x)]?p[abs(x)]:abs(p[t])))
+#define _run_both _ufind_run(i);_ufind_run(j)
+#define _set_side(x) p[abs(i)]=sig(i)*(abs(i)==abs(j)?0:(x)*j)
+#define _judge_side(x) (i==(x)*j&&i)
+
+struct ufind{
+	int p[MAXN],t;
+	void init(){memset(p,0,sizeof(p));}
+	int set_friend(int i,int j){_run_both;_set_side(1);return !_judge_side(-1);}
+	int set_enemy(int i,int j){_run_both;_set_side(-1);return !_judge_side(1);}
+	int is_friend(int i,int j){_run_both;return _judge_side(1);}
+	int is_enemy(int i,int j){_run_both;return _judge_side(-1);}
+};
+
+int main()
+{
+	//freopen("1.txt","r",stdin);
+	int m,n;
+	int zu;
+	scanf("%d",&zu);
+	while(zu--)
+	{
+		scanf("%d%d",&m,&n);
+		ufind k;
+		k.init();
+		int x,y;
+		char z;
+		bool flag=0;
+		for(int i=0;i<n;i++)
+		{
+			scanf("%d%d %c",&x,&y,&z);
+			if(flag)
+				continue;
+			if(z=='F')
+				if(k.is_enemy(x,y))
+					flag=1;
+				else
+					k.set_friend(x,y);
+			else
+				if(k.is_friend(x,y))
+					flag=1;
+				else
+					k.set_enemy(x,y);
+		}
+		if(flag)
+			cout<<"N"<<endl;
+		else
+			cout<<"Y"<<endl;
+	}
+}

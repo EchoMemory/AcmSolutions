@@ -1,0 +1,13 @@
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+int main()
+{
+string s,t;
+while(cin>>s)
+{
+int x=count(s.begin(),s.end(),'a');
+cout<<x<<" "<<s.size()-x<<endl;
+}
+}

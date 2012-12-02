@@ -1,0 +1,72 @@
+#include<iostream>
+#include<fstream>
+#include<vector>
+using namespace std;
+int hash(vector<int> &a,vector<int> &b)
+{
+	int x=0;
+	for(int i=0;i<a.size();i++)
+		x+=a[i]*b[i];
+	return x;
+}
+bool can(vector<int> &b)
+{
+	for(int i=0;i<b.size();i++)
+		if(b[i]<0)
+			return 0;
+	for(int i=1;i<b.size();i++)
+		if(b[i]>b[i-1])
+			return 0;
+	return 1;
+}
+void aaa(vector<int> &b,vector<unsigned long long int> &c,vector<int> & temp)
+{
+	unsigned long long int x=0;
+	for(int i=0;i<b.size();i++)
+	{
+		vector<int> z=temp;
+		
+		z[i]--;
+		if(can(z))
+		{
+
+			if(c[hash(z,b)])
+				x+=c[hash(z,b)];
+			else 
+			{
+				aaa(b,c,z);
+				x+=c[hash(z,b)];
+			}
+		}
+		
+
+	}
+	c[hash(temp,b)]=x;
+	
+
+
+}
+//a ren b hash c zhi
+int main()
+{
+	//ifstream cin("1.txt");
+	int zu;
+	while(cin>>zu && zu)
+	{
+		vector<int> a(zu);
+		for(int i=0;i<zu;i++)
+			cin>>a[i];
+		int x=1;
+		for(int i=0;i<zu;i++)
+			x*=1+a[i];
+		vector<unsigned long long int> c(x,0);
+		c[0]=1;
+		vector<int> b(zu,1);
+		for(int i=zu-1;i>0;i--)
+			b[i-1]=b[i]*(a[i]+1);
+		aaa(b,c,a);
+		cout<<c[hash(a,b)]<<endl;
+
+
+	}
+}

@@ -1,0 +1,44 @@
+#include<iostream>
+
+using namespace std;
+int main()
+{char a;
+int b,c;
+int cishu=0;
+while(cin>>a>>b>>c  && !(b==0 && c==0))
+{if(cishu!=0)
+cout<<endl;
+cishu++;
+	int i,j;
+	
+	for(i=0;i<b;i++)
+	{cout<<'B';
+	for(j=0;j<b;j++)
+			cout<<' ';
+		for(j=0;j<c;j++)
+			cout<<a;
+	cout<<endl;}
+for(i=0;i<c;i++)
+{cout<<'B';
+for(j=0;j<b;j++)
+			cout<<a;
+		for(j=0;j<c;j++)
+			cout<<' ';
+		for(j=0;j<b;j++)
+			cout<<a;
+		cout<<endl;
+}
+for(i=0;i<b;i++)
+	{cout<<'B';
+	for(j=0;j<b;j++)
+			cout<<' ';
+		for(j=0;j<c;j++)
+			cout<<a;
+		cout<<endl;
+	}
+}
+	
+	return 0;
+	
+
+}

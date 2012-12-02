@@ -1,0 +1,26 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	int a,b,c;
+	vector<int> array;
+	while(cin>>a>>b>>c && !(a==-1 && b==-1 && c==-1))
+	{if(a<=168)
+	array.push_back(a);
+	else if(b<=168)
+		array.push_back(b);
+	else if(c<=168)
+		array.push_back(c);
+	else
+		array.push_back(-1);
+
+		
+	}
+	for(int l=0;l<array.size();l++)
+		if(array[l]==-1)
+			cout<<"NO CRASH"<<endl;
+		else cout<<"CRASH " << array[l]<<endl;
+	
+	 return 0;
+}

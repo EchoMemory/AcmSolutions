@@ -1,0 +1,14 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+   int a, b;
+   while(cin>>a>>b){
+	   int Max=(a>b?a:b);
+     while(1){
+     if((Max%a==0)&&(Max%b==0))break;
+       Max++;
+       }
+     cout<<Max<<endl;
+   }
+}

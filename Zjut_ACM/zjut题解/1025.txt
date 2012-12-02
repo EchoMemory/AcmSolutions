@@ -1,0 +1,25 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{int zushu;
+cin>>zushu;
+vector<char> a;
+int z,u,t;
+while(zushu)
+{zushu--;
+cin>>z>>u>>t;
+if(z+u==t)
+a.push_back('+');
+else if(z-u==t)
+a.push_back('-');
+else if(z*u==t)
+a.push_back('*');
+else if(z/u==t)
+a.push_back('\\');
+}
+
+for(int i=0;i<a.size();i++)
+cout<< a[i]<<endl;
+return 0;
+}

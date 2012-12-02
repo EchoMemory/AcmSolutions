@@ -1,0 +1,54 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<vector>
+#include<algorithm>
+using namespace std;
+bool bi(string a,string  b)
+{if(a=="0")
+return true;
+if(b=="0")
+return false;
+
+	reverse(a.begin(),a.end());
+reverse(b.begin(),b.end());
+int i;
+for(i=0;i<a.size();i++)
+if(a[i]-'0'){
+a=a.substr(i,a.size()-i);
+break;}
+for(i=0;i<b.size();i++)
+if(b[i]-'0')
+{
+b=b.substr(i,b.size()-i);
+break;}
+if(a.size()!=b.size())
+return a.size()<b.size();
+return a<b;
+
+}
+int main()
+{//ifstream cin("1.txt");
+
+	int n;
+	cin>>n;
+string s;
+while(n)
+{n--;
+int zushu;
+cin>>zushu;
+vector<string> aaa(zushu);
+for(int j=0;j<zushu;j++)
+cin>>aaa[j];
+
+
+
+sort(aaa.begin(),aaa.end(),bi);
+
+for(int i=0;i<aaa.size();i++)
+cout<<aaa[i]<<' ';
+cout<<endl;
+}
+return 0;
+
+}

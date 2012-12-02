@@ -1,0 +1,54 @@
+#include<iostream>
+#include<string>
+#include<bitset>
+#include<algorithm>
+using namespace std;
+
+int a[1000000];
+int main()
+{
+	int ge=0;
+	int buchang=1;
+	for(int i=1;i<1000000;i+=buchang)
+	{
+		int t=i;
+		while(t%10!=4 )
+		{
+			buchang*=10;
+			t/=10;
+			if(t==0)
+			{
+				break;
+			}
+		}
+		if(t>0)
+		{
+			for(int j=0;j<buchang;j++)
+				a[i+j]=ge;
+			continue;
+		}
+		t=i;
+		buchang=1;
+		while(t%100!=62 )
+		{
+			buchang*=10;
+			t/=10;
+			if(t==0)
+			{
+				break;
+			}
+		}
+		if(t>0)
+		{
+			for(int j=0;j<buchang;j++)
+				a[i+j]=ge;
+			continue;
+		}
+		buchang=1;
+		a[i]=++ge;
+	}
+	int m,n;
+	while(cin>>m>>n && (m||n))
+		cout<<a[n]-a[m-1]<<endl;
+}
+

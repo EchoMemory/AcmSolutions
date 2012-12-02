@@ -1,0 +1,23 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+int main()
+{
+int a,b,c,d;
+vector<int> array;
+while(cin>>a>>b>>c>>d)
+{int temp;
+temp=(c-a)*(d-b);
+if(temp<0)
+temp=-temp;
+array.push_back(temp);
+
+} 
+sort(array.begin(),array.end());
+for(int i=0;i<array.size();i++)
+cout<<array[i]<<endl;
+
+return 0;
+}

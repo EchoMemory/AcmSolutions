@@ -1,0 +1,86 @@
+#include<iostream>
+#include<vector>
+#include<cmath>
+#include<iomanip>
+#include<fstream>
+using namespace std;
+//(m*m-1)/2
+inline int f(int x,int y)
+{
+	if(x<0)
+		x+=y;
+	x%=y;
+	int p=y-x;
+	if(x>p)
+		x=p;
+	return x;
+}
+void gaosi(vector<vector<double> > &mat,vector<double>&a,vector<double>&b,int n)
+{
+	for(int i=0;i<n;i++)
+	{
+		for(int j=i+1;j<n;j++)
+		{
+			double xishu=-mat[j][i]/mat[i][i];
+			for(int k=i;k<n;k++)
+				mat[j][k]+=xishu*mat[i][k];
+			a[j]+=xishu*a[i];
+		}
+	}
+	b[n-1]=a[n-1];
+	for(int i=n-1;i>=0;i--)
+	{
+		double sum=a[i];
+		for(int j=n-1;j>i;j--)
+			sum-=mat[i][j]*b[j];
+		b[i]=sum/mat[i][i];
+	}
+}
+int main()
+{
+	//ifstream cin("1.txt");
+	//ofstream cout("2.txt");
+	int m,p;
+	while(cin>>m>>p)
+	{
+		if(m%2==0 &&p%2==1)
+		{cout<<"INF"<<endl;continue;}
+		if(m%2==1)
+		{
+			int n=m+1>>1;
+			vector<vector<double> >mat(n,vector<double>(n));
+			vector<double>a(n);
+			mat[0][0]=1;
+			for(int i=1;i<n;i++)
+			{
+				mat[i][i]=2;
+				mat[i][f(i-2,m)]--;
+				mat[i][f(i+2,m)]--;
+				a[i]=4;
+			}
+			vector<double>b(n);
+			gaosi(mat,a,b,n);
+			p=min(p,m-p);
+			cout<<setiosflags(ios::fixed)<<setprecision(2)<<b[p]<<endl;
+		}
+		else
+		{
+			int t=m>>1;
+			int n=(t>>1)+1;
+			vector<vector<double> >mat(n,vector<double>(n));
+			vector<double>a(n);
+			mat[0][0]=1;
+			for(int i=1;i<n;i++)
+			{
+				mat[i][i]=2;
+				mat[i][f(i-1,t)]--;
+				mat[i][f(i+1,t)]--;
+				a[i]=4;
+			}
+			vector<double>b(n);
+			gaosi(mat,a,b,n);
+			p=min(p,m-p);
+			cout<<setiosflags(ios::fixed)<<setprecision(2)<<b[p>>1]<<endl;
+		}
+	}
+}

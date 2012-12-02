@@ -1,0 +1,54 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{int zushu;
+cin>>zushu;
+char bi;
+int gao;
+int x=0;
+while(zushu)
+{zushu--;
+if(x!=0)
+cout<<endl;
+x++;
+cin>>bi>>gao;
+int kuan=gao/6+1;
+int i,j;
+for(i=0;i<kuan;i++)
+cout<<' ';
+for(j=0;j<(gao-2)/2;j++)
+cout<<bi;
+cout<<endl;
+for(j=0;j<(gao-3)/2;j++){
+for(i=0;i<kuan;i++)
+cout<<bi;
+for(i=0;i<(gao-2)/2;i++)
+cout<<' ';
+for(i=0;i<kuan;i++)
+cout<<bi;
+cout<<endl;}
+for(i=0;i<kuan;i++)
+cout<<' ';
+for(j=0;j<(gao-2)/2;j++)
+cout<<bi;
+cout<<endl;
+for(j=0;j<(gao-2)/2;j++){
+for(i=0;i<kuan;i++)
+cout<<bi;
+for(i=0;i<(gao-2)/2;i++)
+cout<<' ';
+for(i=0;i<kuan;i++)
+cout<<bi;
+cout<<endl;}
+for(i=0;i<kuan;i++)
+cout<<' ';
+for(j=0;j<(gao-2)/2;j++)
+cout<<bi;
+cout<<endl;
+
+}
+
+
+return 0;
+}

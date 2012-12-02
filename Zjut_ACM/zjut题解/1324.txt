@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+#define maxn 1001
+#define inf 0x0f0f0f0f
+int mat[maxn][maxn];
+
+int main()
+{
+	//freopen("1.txt","r",stdin);
+	int zu;
+	scanf("%d",&zu);
+	while(zu--)
+	{
+		int m,n,x,y,z,i,j,k;;
+		scanf("%d%d",&m,&n);
+		//for(i=1;i<=m;i++)for(j=1;j<=m;j++)mat[i][j]=inf;
+		memset(mat,0xf,sizeof(mat));
+		for(i=0;i<n;i++)
+		{
+			scanf("%d%d%d",&x,&y,&z);
+			if(z<mat[x][y])
+				mat[x][y]=mat[y][x]=z;
+		}
+		int des[maxn],v[maxn];
+		for(i=1;i<=m;i++)
+			des[i]=inf,v[i]=0;
+		for(des[1]=0,j=0;j<m;j++)
+		{
+			for(k=-1,i=1;i<=m;i++)
+				if(!v[i]&&(k==-1 ||des[i]<des[k]))
+					k=i;
+			//if(k==m)break;
+			for(v[k]=1,i=1;i<=m;i++)
+				if(!v[i]&&des[k]+mat[k][i]<des[i])
+					des[i]=des[k]+mat[k][i];
+		}
+		if(des[m]==inf)
+			cout<<-1<<endl;
+		else
+			cout<<des[m]<<endl;
+	}
+}

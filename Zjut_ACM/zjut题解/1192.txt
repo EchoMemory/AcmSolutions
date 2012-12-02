@@ -1,0 +1,65 @@
+#include<iostream>
+#include<iomanip>
+#include<string>
+#include<cmath>
+#include<vector>
+#include<map>
+#include<fstream>
+using namespace std;
+
+bool su(int m)
+{
+	if(m%2==0)
+		return 0;
+	int temp=(int)sqrt(m*1.0);
+	for(int i=3;i<=temp;i+=2)
+		if(m%i==0)
+			return 0;
+	return 1;
+}
+int main()
+{
+	//ifstream cin("1.txt");
+	vector<int> a(6542,2);
+	int geshu=0;
+
+	for(int i=3;i<(1<<16);i+=2)
+	{	
+		if(su(i))
+		{
+			geshu++;
+			a[geshu]=i;
+			
+			
+		}
+	}
+	unsigned int m;
+	while(cin>>m)
+	{
+		cout<<m<<": ";
+		map<int,int> b;
+		for(int i=0;i<6542;)
+		{	
+			if(m==1)
+				break;
+		
+			if(m%a[i]==0)
+			{	
+				b[a[i]]++;
+				m/=a[i];
+			}
+			else i++;
+		}
+		int zong=1;
+
+		if(m!=1)
+			zong=2;
+		for(map<int,int>::iterator it=b.begin();it!=b.end();it++)
+			zong*=(it->second+1);
+		cout<<zong<<endl;
+
+
+
+	}
+	
+}

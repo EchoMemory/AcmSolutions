@@ -1,0 +1,39 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<fstream>
+using namespace std;
+void move(vector<string> &a,int j,int k)
+{a[j][k]='0';
+if(j>0 && a[j-1][k]=='1')
+move(a,j-1,k);
+if(k>0 && a[j][k-1]=='1')
+move(a,j,k-1);
+if(j<a.size()-1 && a[j+1][k]=='1')
+move(a,j+1,k);
+if(k<a[j].size()-1 && a[j][k+1]=='1')
+move(a,j,k+1);
+}
+int main()
+{//ifstream cin("1.txt");
+	int n;
+cin>>n;
+int r,w;
+while(n)
+{n--;
+cin>>r>>w;
+int sun=0;
+vector<string> aaa(r);
+int i,j;
+for(i=0;i<r;i++)
+cin>>aaa[i];
+for(i=0;i<r;i++)
+for(j=0;j<w;j++)
+if(aaa[i][j]=='1')
+{sun++;
+move(aaa,i,j);
+}
+cout<<sun<<endl;
+}
+return 0;
+}

@@ -1,0 +1,65 @@
+#include<iostream>
+#include<vector>
+#include<list>
+#include<cmath>
+#include<map>
+#include<algorithm>
+#include<iomanip>
+#include<set>
+#include<string>
+#include<bitset>
+using namespace std;
+int main()
+{
+	int m;
+	while(cin>>m &&m)
+	{
+		cout<<"Printing order for "<<m<<" pages:"<<endl;
+		int t=m%4;
+		int xiao=1,da=m;
+		int index=1;
+		if(t==0)
+		{	
+			for(;xiao<da;)
+			{
+				cout<<"Sheet "<<index<<", front: "<<da--<<", "<<xiao++<<endl;
+				cout<<"Sheet "<<index++<<", back : "<<xiao++<<", "<<da--<<endl;
+			}
+			continue;
+		}
+		if(t==2)
+		{
+			cout<<"Sheet "<<index<<", front: Blank, "<<xiao++<<endl;
+			cout<<"Sheet "<<index++<<", back : "<<xiao++<<", Blank"<<endl;
+			for(;xiao<da;)
+			{
+				cout<<"Sheet "<<index<<", front: "<<da--<<", "<<xiao++<<endl;
+				cout<<"Sheet "<<index++<<", back : "<<xiao++<<", "<<da--<<endl;
+			}
+			continue;
+		}
+		if(t==3)
+		{
+			cout<<"Sheet "<<index<<", front: Blank, "<<xiao++<<endl;
+			cout<<"Sheet "<<index++<<", back : "<<xiao++<<", "<<da--<<endl;
+			for(;xiao<da;)
+			{
+				cout<<"Sheet "<<index<<", front: "<<da--<<", "<<xiao++<<endl;
+				cout<<"Sheet "<<index++<<", back : "<<xiao++<<", "<<da--<<endl;
+			}
+			continue;
+		}
+		if(m==1)
+		{cout<<"Sheet 1, front: Blank, 1"<<endl;continue;}
+		cout<<"Sheet "<<index<<", front: Blank, "<<xiao++<<endl;
+		cout<<"Sheet "<<index++<<", back : "<<xiao++<<", Blank"<<endl;
+		cout<<"Sheet "<<index<<", front: Blank, "<<xiao++<<endl;
+		cout<<"Sheet "<<index++<<", back : "<<xiao++<<", "<<da--<<endl;
+		for(;xiao<da;)
+		{
+			cout<<"Sheet "<<index<<", front: "<<da--<<", "<<xiao++<<endl;
+			cout<<"Sheet "<<index++<<", back : "<<xiao++<<", "<<da--<<endl;
+		}
+
+	}
+}

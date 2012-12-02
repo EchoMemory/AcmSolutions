@@ -1,0 +1,30 @@
+#include<iostream>
+#include<string>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{
+		string s,t;
+		cin>>s>>t;
+		int x=s[s.length()-1]-'0';
+		int y=0;
+		if(t.length()<2)
+			y=t[t.length()-1]-'0';
+		else
+		{
+			y=t[t.length()-2]-'0';
+			y*=10;
+			y+=t[t.length()-1]-'0';
+		}
+		
+		y%=4;
+		y+=4;
+		int z=(int)pow(x*1.0,y);
+		cout<<z%10<<endl;
+	}
+}

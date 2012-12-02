@@ -1,0 +1,32 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+//---------------------------------------------------------------------------
+int main()
+{
+  // ifstream cin("1115.txt");
+   vector<int> tempvi,vi(5000,0);
+   int x1,h,x2,n=0;
+   cin>>x1>>h>>x2;
+   tempvi.push_back(x2);
+   if( x1 < 0 ) n=-x1;
+   int temp=x1+n;
+   for(int i=x1+n; i<x2+n; i++)
+     vi[i]=h;
+   for( ; cin>>x1>>h>>x2; )
+   {
+     tempvi.push_back(x2);
+     for(int i=x1+n; i<x2+n; i++)
+       if( vi[i] < h ) vi[i]=h;
+   }
+   sort(tempvi.begin(), tempvi.end() );
+   for(int i=temp; i<=tempvi.back()+n; i++)
+   {
+     if(i == temp){ cout<<temp-n<<" "<<vi[i]<<" "; continue; }
+     if(vi[i] != vi[i-1]) cout<<i-n<<" "<<vi[i]<<(i == tempvi.back()+n ? "" : " ");
+   }
+
+   return 0;
+} 

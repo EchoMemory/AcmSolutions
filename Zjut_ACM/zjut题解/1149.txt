@@ -1,0 +1,52 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<fstream>
+#include<list>
+#include<queue>
+#include<map>
+#include<string>
+#include<cmath>
+#include<set>
+#include<stack>
+#include<iomanip>
+using namespace std;
+struct edge
+{
+	int x,y,z;
+};
+const int inf=1<<29;
+int main()
+{
+	//freopen("1.txt","r",stdin);
+	int m;
+	while(scanf("%d",&m)!=EOF)
+	{
+		vector<edge>a(m);
+		int xiao=inf,da=-inf;
+		for(int i=0;i<m;i++)
+		{
+			scanf("%d%d%d",&(a[i].x),&(a[i].y),&(a[i].z));
+			a[i].y++;
+			xiao=min(xiao,a[i].x);
+			da=max(da,a[i].y);
+		}
+		vector<int>des(da+1,0);
+		des[xiao]=0;
+		bool flag=1;
+		for(int i=xiao;i<da && flag;i++)
+		{
+			flag=0;
+			for(int j=0;j<m;j++)
+				if(des[a[j].x]+a[j].z>des[a[j].y])
+					des[a[j].x]=des[a[j].y]-a[j].z,flag=1;
+			for(int j=xiao;j<da;j++)
+				if(des[j+1]>des[j]+1)
+					des[j+1]=des[j]+1,flag=1;
+			for(int j=da;j>xiao;j--)
+				if(des[j-1]>des[j])
+					des[j-1]=des[j],flag=1;
+		}
+		cout<<-des[xiao]<<endl;
+	}
+}

@@ -1,0 +1,46 @@
+#include<iostream>
+#include<vector>
+#include<fstream>
+#include<string>
+using namespace std;
+int main()
+{
+	//ifstream cin("1.txt");
+	int m,n;
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{
+		cin>>m>>n;
+		vector<string>a(m);
+		bool flag2=0;
+		int i,j;
+		for(i=0;i<m;i++)cin>>a[i];
+		for(i=0;i<m;i++)
+		{
+			bool flag=0;
+			int x,y;
+			for(j=0;j<n;j++)
+				if(a[i][j]=='0')
+				{flag=1;x=j;break;}
+				if(!flag)
+					continue;
+			i++;
+			for(j=0;j<n;j++)
+				if(a[i][j]=='0')
+				{y=j;break;}
+		//	cout<<x<<" "<<y<<endl;
+				if(x==y)
+				{flag2=1;}
+				else
+					flag2=0;
+			goto end;
+		}
+end:;
+	if(flag2)
+		cout<<"Left hand."<<endl;
+	else
+		cout<<"Right hand."<<endl;
+
+	}
+}

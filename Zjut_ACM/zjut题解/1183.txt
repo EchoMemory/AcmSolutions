@@ -1,0 +1,22 @@
+#include <iostream>
+#include<fstream>
+#include<algorithm>
+#include<vector>
+#include<iomanip>
+#include<set>
+#include<string>
+#include<list>
+using namespace std;
+
+int main()
+{
+	//ifstream cin("1.txt");
+	int m;
+	while(cin>>m)
+	{
+		for(int i=0;i<32;i++)
+			cout<<((m>>(32-i-1))&1);
+		cout<<"  "<<m<<endl;
+
+	}
+}

@@ -1,0 +1,33 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main()
+{//ifstream cin("1.txt");
+int h,u,d,f;
+while(cin>>h>>u>>d>>f && h)
+{double jian=u*f/100.0;
+double gao=0.0;
+int tian=0;
+double pa;
+double well=(double)h;
+while(1)
+{pa=u-jian*tian;
+if(gao+pa>well)
+{cout<<"success on day "<<tian+1<<endl;
+break;}
+tian++;
+if(pa<0)
+pa=0;
+gao+=pa-d;
+if(gao<0)
+{cout<<"failure on day "<<tian<<endl;
+break;}
+
+}
+}
+return 0;
+}
+

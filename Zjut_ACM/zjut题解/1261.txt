@@ -1,0 +1,26 @@
+#include<iostream>
+#include<string>
+#include<bitset>
+#include<algorithm>
+#include<map>
+using namespace std;
+
+int main()
+{
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{
+		int g;
+		cin>>g;
+		int a,b;
+		map<double,int> c;
+		while(g--)
+		{
+			cin>>a>>b;
+			c[a*1.0/b]++;
+		}
+
+		cout<<c.size()<<endl;
+	}
+}

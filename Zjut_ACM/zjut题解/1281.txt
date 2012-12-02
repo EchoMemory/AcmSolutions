@@ -1,0 +1,60 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<map>
+using namespace std;
+int main()
+{
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{
+		int renshu;
+		cin>>renshu;
+		int i;
+		string s;
+		map<string,vector<string> > a;int q,w,e;
+		for(i=0;i<renshu;i++)
+		{
+			cin>>s;
+			int ge;
+			cin>>ge;
+			int j;
+			
+			a[s]=vector<string>(10,string(15,'0'));
+			for(j=0;j<ge;j++)
+			{
+				cin>>q>>w>>e;
+				for(int k=w;k<=e;k++)
+					a[s][q][k]='1';
+			}
+		}
+		int ci;
+		cin>>ci;
+		for(i=0;i<ci;i++){
+		cin>>q>>w>>e;
+		int ggg=0;
+		map<string,vector<string> > ::iterator it;
+		for(it=a.begin();it!=a.end();it++)
+		{
+			bool flag=0;
+			for(int k=w;k<=e;k++)
+			{
+				if(it->second[q][k]=='1')
+				{flag=1;break;}
+			}
+			if(flag)
+			{
+				if(ggg++)
+					cout<<" ";
+				cout<<it->first;
+			}
+		}
+		if(ggg==0)
+			cout<<"None";
+		cout<<endl;
+		
+		}
+
+	}
+}

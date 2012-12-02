@@ -1,0 +1,13 @@
+#include<iostream>
+#include<iomanip>
+using namespace std;
+int main(){
+  for(int n,k=0; cin>>n; ){
+    cout<<(k++?"\n":"");
+    for(int x=n*n; x--; ){
+      string s = string("0")+char(x%10 + '0');
+      if(x>=10) s[0] += x/10;
+      cout<<setw(5)<<s<<(x%n==0 ? "\n" : "");
+    }
+  }
+}

@@ -1,0 +1,114 @@
+#include<iostream>
+#include<algorithm>
+#include<string>
+#include<sstream>
+#include<stack>
+#include<set>
+#include<vector>
+using namespace std;
+class str
+{
+public:
+	bool operator < (str & a)const{return arr<a.arr;}
+	str(int m):arr(m){}
+	str(){}
+	vector<int> arr;
+	int id;
+};
+int main()
+{
+	int x,y;
+	while(cin>>x>>y)
+	{
+		vector<str> a(x,str(y));
+		for(int i=0;i<x;i++)
+		{
+			for(int j=0;j<y;j++)
+			{
+				cin>>a[i].arr[j];
+			}
+			sort(a[i].arr.begin(),a[i].arr.end());
+			a[i].id=i+1;
+		}
+		sort(a.begin(),a.end());
+		int index=x;
+		vector<int> b(index,1);
+		b[0]=1;
+		vector<int> p(index+1,-1);
+		int da=1;
+		for(int i=1;i<index;i++)
+		{
+			for(int j=0;j<i;j++)
+			{
+				bool flag=true;
+				for(int k=0;k<y;k++)
+				{
+					if(a[j].arr[k]>=a[i].arr[k])
+					{
+						flag=0;
+						break;
+					}
+
+				}
+				if(flag)
+				{
+					if(b[j]+1>b[i])
+					{
+						b[i]=b[j]+1;
+						if(b[i]>da)
+						{
+							da=b[i];
+						}
+						p[i]=j;
+					}
+					else
+					{
+						if(b[j]+1==b[i])
+						{
+							if(b[i]>da)
+							{
+								da=b[i];
+							}
+
+							if(p[i]<0)
+								p[i]=j;
+							else
+							{
+								if(a[p[i]].id>a[j].id)
+									p[i]=j;
+							}
+						}
+					}		
+				}		
+			}
+		}
+		cout<<da<<endl;
+		set<vector<int> > sa;
+		for(int i=0;i<x;i++)
+		{
+			if(b[i]==da)
+			{
+				vector<int> t;
+				int dain=i;
+				stack<int> sq;
+				while(dain>=0)
+				{
+					sq.push(a[dain].id);
+					dain=p[dain];
+				}
+				while(!sq.empty())
+				{
+					t.push_back(sq.top());
+					sq.pop();
+				}
+				sa.insert(t);
+			}
+		}
+		set<vector<int> >::iterator it=sa.begin();
+		//cout<<(*it)[0];
+		for(int i=0;i<it->size();i++)
+			cout<<(*it)[i]<<" ";
+		cout<<endl;
+	}
+}
+

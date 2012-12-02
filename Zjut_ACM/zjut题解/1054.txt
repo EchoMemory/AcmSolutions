@@ -1,0 +1,22 @@
+#include<iostream>
+#include<iomanip>
+
+
+using namespace std;
+int main()
+{int array[1001];
+int i=0;
+while(cin>>array[i] )
+{i++;
+}
+double sum=0.0;
+int j;
+for(j=0;j<i;j++)
+sum+=array[j];
+sum=sum/j;
+cout<<setiosflags(ios::fixed)<<setprecision(2)<<sum<<endl;
+
+
+
+return 0;
+}

@@ -1,0 +1,28 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	int a,b;
+	char yang;
+	
+	vector<int> array;
+	int cishu=0;
+	while(cin>>yang>>a>>b )
+	{if(cishu!=0)
+	cout<<endl;
+cishu++;
+		for(int i=0;i<b;i++)
+	{cout<<yang<<' '<<yang<<' '<<yang<<' '<<yang<<' '<<yang<<' '
+	     <<yang<<' '<<yang<<' '<<yang<<' '<<yang<<' '<<yang<<' '
+		 <<yang<<' '<<yang<<' '<<yang<<' '<<yang<<' '<<yang<<endl;}
+		for(int j=0;j<a-b;j++)
+		{cout<<yang<<' '<<' '<<' '<<yang<<' '<<' '<<' '<<yang<<' '
+	     <<' '<<' '<<yang<<' '<<' '<<' '<<yang<<' '<<' '<<' '
+		 <<yang<<' '<<' '<<' '<<yang<<' '<<' '<<' '<<yang<<endl;}
+
+	}
+
+	
+	 return 0;
+}

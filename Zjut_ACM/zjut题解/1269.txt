@@ -1,0 +1,39 @@
+#include<iostream>
+#include<cmath>
+#include<string>
+using namespace std;
+int f(int x,int y){
+	if(y%x==0)
+		return x;
+	else
+		return f(y%x,x);
+}
+int main()
+{
+	int n;
+	cin>>n;
+	string s;
+	while(n--){
+		cin>>s;
+		if(s.find('(')==-1){
+			s=s.substr(2,s.length()-2);
+			int x=atoi(s.c_str());
+			int y=pow(10.0,(double)s.length());
+			int z=f(x,y);
+			cout<<x/z<<"/"<<y/z<<endl;
+		}
+		else{
+			s=s.substr(2,s.length()-2);
+			string s1=s.substr(0,s.find("("));
+			string s2=s.substr(s.find("(")+1,s.length()-s.find("(")-2);
+			string s3=s1+s2;
+			int x1=atoi(s3.c_str());
+			int x2=atoi(s1.c_str());
+			int x=x1-x2;
+			int y=pow(10.0,(double)s3.length())-pow(10.0,(double)s1.length());
+			int z=f(x,y);
+			cout<<x/z<<"/"<<y/z<<endl;
+		}
+	}
+	
+}

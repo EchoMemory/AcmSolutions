@@ -1,0 +1,45 @@
+#include <iostream>
+#include <iomanip>
+#include<cmath>
+using namespace std;
+
+int main ()
+{
+	long double a[10][100][10]={0.0};
+	int i,j,k;
+	for(i=2;i<10;i++)
+	{
+		for(j=0;j<10;j++)
+			a[i][0][j]=1.0;
+		
+		for(j=1;j<100;j++)
+		{
+			a[i][j][0]=a[i][j-1][0]+a[i][j-1][1];
+			a[i][j][i]=a[i][j-1][i]+a[i][j-1][i-1];
+			for(k=1;k<i;k++)
+				a[i][j][k]=a[i][j-1][k-1]+a[i][j-1][k]
+				             +a[i][j-1][k+1];
+		}
+	}
+	int x,y;
+	cout<<setiosflags(ios::fixed)<<setprecision(5);
+	while(cin>>x>>y)
+	{if(x==0||x==1||y==1)
+	{cout<<100.00000<<endl;continue;}
+		long double sum=0.0;
+	for(i=0;i<=x;i++)
+		sum+=a[x][y-1][i];
+
+	cout<<sum*100.0/pow((x+1)*1.0,y)<<endl;
+	}
+	
+	
+
+
+
+
+
+
+
+
+}

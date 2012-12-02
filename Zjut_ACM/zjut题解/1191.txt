@@ -1,0 +1,39 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+int main()
+{
+	const unsigned long long int s=479001600;
+	vector<unsigned long long int> a;
+	long long int x;
+	while(cin>>x)
+	{
+		if(x<=s)
+			a.push_back(x);
+	}
+	sort(a.begin(),a.end());
+	int z=0;
+	int y=a.size()-1;
+	int sum=0;
+	while(z<=y)
+	{
+		if(a[z]*a[y]==s)
+		{
+			z++;
+			y--;
+			sum++;
+		}
+		else
+		{
+			if(a[z]*a[y]<s)
+			{
+				z++;
+			}
+			else
+				y--;
+		}
+	}
+	cout<<sum<<endl;
+}

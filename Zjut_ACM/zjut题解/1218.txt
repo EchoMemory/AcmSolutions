@@ -1,0 +1,35 @@
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	string a[1001]={"1"};
+	for(int i=1;i<=1000;i++)
+	{
+		a[i]=a[i-1];
+		int jin=0;
+		for(int j=a[i].length()-1;j>=0;j--)
+		{
+			jin+=(a[i][j]-'0')*i;
+			a[i][j]=jin%10+'0';
+			jin/=10;
+		}
+		if(jin)
+		{
+			char arr[100];
+			sprintf(arr,"%d",jin);
+			a[i]=arr+a[i];
+		}
+
+	}
+	int b[1000];
+	for(int i=0;i<=1000;i++)
+	{
+		b[i]=count(a[i].begin(),a[i].end(),'0');
+	}
+	int x;
+	while(cin>>x)
+		cout<<b[x]<<endl;
+	}

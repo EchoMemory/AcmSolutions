@@ -1,0 +1,63 @@
+#include<iostream>
+#include<vector>
+#include<list>
+#include<cmath>
+#include<map>
+#include<algorithm>
+#include<iomanip>
+#include<set>
+#include<string>
+#include<fstream>
+#include<bitset>
+using namespace std;
+#define cross(p1,p2,p0) ((p1[1]-p0[1])*(p2[0]-p0[0])-(p2[1]-p0[1])*(p1[0]-p0[0]))
+#define infinity 1e20
+#define EP 1e-10
+#define _sign(x) ((x)>EP?1:((x)<-EP?2:0))
+vector<vector<double> >convex(100);
+int inside_convex(vector<double>& q,int n)
+{
+    int i,s[3]={1,1,1};
+    for(i=0;i<n&&s[1]|s[2];i++)
+        s[_sign(cross(convex[i+1],q,convex[i]))]=0;
+    return s[1]|s[2];
+}
+int main()
+{
+	//ifstream cin("2.txt");
+	int m;
+	while(cin>>m)
+	{
+		vector<vector<double> >point(m,vector<double>(2));
+		for(int i=0;i<m;i++)
+			cin>>point[i][1]>>point[i][0];
+		sort(point.begin(),point.end());
+		int s=2;
+		convex[0]=point[0];
+		convex[1]=point[1];
+		for(int i = 2;i < m;i++)
+		{
+			 while(s>1&&cross(point[i],convex[s- 1],convex[s- 2]) > 0)s--;
+			 convex[s++] =point[i];
+		}	  
+		int hl = s;
+		convex[s++] = point[m-2];
+		for (int i = m-3;i >= 0;i--) 
+		{	
+			 while(s > hl&&cross(point[i],convex[s - 1],convex[s - 2]) > 0 ) s--;
+			 convex[s++] = point[i];      
+		}
+		s--;
+		int n;
+		cin>>n;
+		vector<double>temp(2);
+		for(int i=0;i<n;i++)
+		{
+			cin>>temp[1]>>temp[0];
+			if(inside_convex(temp,s))
+				cout<<"YES"<<endl;
+			else
+				cout<<"NO"<<endl;
+		}
+	}
+}

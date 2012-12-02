@@ -1,0 +1,17 @@
+#include<iostream>
+#include<string>
+using namespace std;
+string sub(const string& a, const string& b){
+  if(a.length()<b.length()) return sub(b,a);
+  string s(a);
+  for(int i=0,x,off=a.length()-b.length(); i<b.length(); ++i){
+    x = s[off+i]-b[i];
+    s[off+i] = char('0'+(x>0 ? x : -x));
+  }
+  int p = s.find_first_not_of('0');
+  return (p<0 ? string("0") : s.substr(p));
+}int main(){
+  int n; cin>>n;
+  for(string a,b; n--&& cin>>a>>b; )
+    cout<<sub(a,b)<<"\n";
+}

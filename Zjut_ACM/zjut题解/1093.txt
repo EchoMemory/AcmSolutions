@@ -1,0 +1,27 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	int zushu;
+	vector<int> aaa;
+	while(cin>>zushu && zushu!=0)
+	{
+		vector<int> array(zushu);
+		for(int i=0;i<zushu;i++)
+			cin>>array[i];
+       int sum=0;
+		for(int j=0;j<zushu-1;j++)
+			for(int k=j+1;k<zushu;k++)
+			{if(array[j]>array[k])
+			sum++;
+
+			}
+aaa.push_back(sum);
+	}
+	for(int l=0;l<aaa.size();l++)
+		cout << aaa[l]<<endl;
+	
+	 return 0;
+}
+

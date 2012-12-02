@@ -1,0 +1,26 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+
+int main()
+{int array[5000]={0};
+array[0]=0;
+array[1]=1;
+int a,b;
+vector<int> aaa;
+while(cin>>a>>b && !(a==0 && b==0))
+{int temp=1;
+for(int i=0;i<b;i++)
+temp*=2;
+for(int j=2;j<a;j++)
+array[j]=(array[j-1]+array[j-2])%temp;
+aaa.push_back(array[a-1]);
+
+}
+for(int k=0;k<aaa.size();k++)
+cout <<aaa[k]<<endl;
+	
+				 return 0;
+
+}

@@ -1,0 +1,103 @@
+#include<iostream>
+using namespace std;
+const int maxn=505;
+char a[maxn];
+int sa[maxn],rank[maxn],temp[maxn],h[maxn],Count[maxn],height[maxn];
+int n,size;
+int rmq[maxn][12];
+int c[maxn];
+void prepreprocess()
+{
+	int x1,x2,x3;
+	for(x1=2,x2=4,x3=1;x2<maxn;x1=x2,x2<<=1,x3++)
+		for(int i=x1;i<x2;i++)
+			c[i]=x3;
+	for(int i=x1;i<maxn;i++)
+		c[i]=x3;
+}
+void prermq()
+{
+	for(int i=1;i<=n;i++)
+		rmq[i][0]=height[i];
+	int t=0,p=n;
+	while(p)
+	{
+		int temp=1<<t;
+		int z=n-temp;
+		for(int i=1;i<=z;i++)	
+			rmq[i][t+1]=min(rmq[i][t],rmq[i+temp][t]);
+		t++,p>>=1;
+	}
+}
+void Preprogress()
+{
+	int i,j,k;
+	size=n+1<<2;
+	memset(Count,0,128<<2);
+	for(i=1;i<=n;i++)
+		Count[a[i]]++;
+	for(i=1;i<128;i++)
+		Count[i]+=Count[i-1];
+	for(i=n;i>=1;i--)
+		sa[Count[a[i]]--]=i;
+	rank[sa[1]]=Count[1]=1;
+	for(i=2;i<=n;i++)
+		Count[rank[sa[i]]=rank[sa[i-1]]+int(a[sa[i]]!=a[sa[i-1]])]=i;
+	for (k=1;k<n && rank[sa[n]]<n;k=k*2)
+	{
+		memcpy(temp,sa,size);
+		for (i=n;i>=1;i--)
+			if (temp[i]>k)
+				sa[Count[rank[temp[i]-k]]--]=temp[i]-k;
+		for (i=n-k+1;i<=n;i++)
+			sa[Count[rank[i]]]=i;
+		memcpy(temp,rank,size);
+		rank[sa[1]]=Count[1]=1;
+		for (i=2;i<=n;i++)
+			Count[rank[sa[i]]=rank[sa[i-1]]+int(temp[sa[i]]!=temp[sa[i-1]] || temp[sa[i]+k]!=temp[sa[i-1]+k])]=i;
+	}
+	for(k=0,i=1;i<=n;i++)
+		if(rank[i]==n)
+			h[i]=k=0;
+		else
+		{
+			k=(k==0)?0:(k-1);
+			int t=sa[rank[i]+1];
+			for (;a[i+k]==a[t+k];k++);
+			h[i]=k;
+		}
+	for(i=1;i<=n;i++)
+		height[i]=h[sa[i-1]];
+	prermq();
+}
+inline int LCP(int x,int y)
+{
+	if(x==y)return n-x+1;
+	if(x>y)swap(x,y);
+	x++;
+	int k=c[y-x+1];
+	return min(rmq[x][k],rmq[y+1-(1<<k)][k]);
+}
+#define lcp(u,v) ( LCP(rank[u],rank[v]) )
+int main()
+{
+	//freopen("1.txt","r",stdin);
+	prepreprocess();
+	while(gets(a+1))
+	{
+		n=strlen(a+1);
+		a[++n]=1;	
+		int t=n;
+		for(int i=1;i<n;i++)
+			a[n+i]=a[n-i];	
+		a[n*2]=0;
+		n=n*2-1;
+		Preprogress();
+		int sum=0;
+		for(int i=1;i<t;i++)
+			sum=max(sum,lcp(i,2*t-i)*2-1);
+		for(int i=2;i<t;i++)
+			sum=max(sum,lcp(i,2*t-i+1)*2);
+		printf("%d\n",sum);
+	}
+}

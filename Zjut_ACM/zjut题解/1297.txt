@@ -1,0 +1,26 @@
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+void mulDigLen(string& s){
+  int len=s.length(), tmp=0;
+  for(int i=0; i<len; ++i,tmp/=10){
+	tmp += (s[i]-'0')*(len+1);
+	s[i] = tmp%10+'0';
+  }
+  if(tmp>0) s = char(tmp%10+'0')+s;
+  if(tmp>9) s = char(tmp/10+'0')+s;
+}bool isCycle(const string& a){
+  if(a == string(a.length(),'0'))
+	return true;
+  if(a=="11111111")
+	return false;
+  string s = a;
+  reverse(s.begin(), s.end());
+  mulDigLen(s);
+  int len = s.find_last_not_of('0');
+  s = s.substr(0, len<a.length() ? len+1 : a.length());
+  return (s == string(s.length(), '9') ? true : false);
+}int main(){ for(string s; cin>>s; )
+	cout<<(isCycle(s) ? "Yes\n" : "No\n");
+}

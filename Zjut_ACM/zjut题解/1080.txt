@@ -1,0 +1,29 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main()
+{//ifstream cin("1.txt");
+ for(int n,m;cin>>n>>m;)
+ {if(n==1)
+ {cout<<"0"<<endl;
+ continue;}
+ int jose[50];
+ int i,j,k;
+ for(i=0;i<n;i++)
+	 jose[i]=i+1;
+ for(i=1,k=-1;i<=(n+1)/2;i++)
+ {for(j=0;j<m;)
+ if(jose[k=(k+1)%n])
+	 j++;
+ jose[k]=0;
+ }
+remove(jose,jose+n,0);
+for(i=0;i<n/2-1;i++)
+cout<<jose[i]<<" ";
+cout<<jose[n/2-1]<<endl;
+ }
+return 0;
+}

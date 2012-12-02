@@ -1,0 +1,34 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<algorithm>
+using namespace std;
+bool chang(string &a,string &b)
+{int temp1=0,temp2=0;
+int i;
+for(i=0;i<a.size();i++)
+{int m=a[i]-'0';
+temp1+=m*m;
+}
+for(i=0;i<b.size();i++)
+{int m=b[i]-'0';
+temp2+=m*m;
+}
+return temp1<temp2;
+}
+int main()
+{int n;
+
+while(cin>>n && n!=0)
+{vector<string> aaa(n);
+int i;
+for(i=0;i<n;i++)
+cin>>aaa[i];
+sort(aaa.begin(),aaa.end(),chang);
+cout<<aaa[0];
+for(i=1;i<n;i++)
+cout<<' '<<aaa[i];
+cout<<endl;
+}
+return 0;
+}

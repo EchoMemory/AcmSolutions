@@ -1,0 +1,41 @@
+#include<iostream>
+#include<string>
+#include <fstream>
+using namespace std;
+int main()
+{
+//	ifstream cin("in.txt");
+	int n=0,i=0,k=0;
+	string str[100];
+	double a[100]={0},b[100]={0},c[100]={0};
+	double d[100]={0};
+	while(cin>>str[i]>>a[i]>>b[i]>>c[i])
+	{
+	d[i]=(((a[i]-50)>10?(a[i]-50):0)/10*3+((b[i]-50)>10?(b[i]-50):0)/10*3+
+		((c[i]-50)>10?(c[i]-50):0)/10*4)/10;
+	i++;	
+	}
+	for(int pass=0;pass<i-1;pass++)
+		for( k=0;k<i-1;k++)
+			if(d[k]<d[k+1])
+			{
+				double h=d[k];
+				d[k]=d[k+1];
+				d[k+1]=h; //
+				h=a[k];
+				a[k]=a[k+1];
+				a[k+1]=h;//
+				h=b[k];
+				b[k]=b[k+1];
+				b[k+1]=h;//
+				h=c[k];
+				c[k]=c[k+1];
+				c[k+1]=h;//
+				string hold=str[k];
+				str[k]=str[k+1];
+				str[k+1]=hold;
+			}
+	for( k=0;k<i;k++)
+		cout<<str[k]<<' '<<a[k]<<' '<<b[k]<<' '<<c[k]<<endl;
+	return 0;
+}

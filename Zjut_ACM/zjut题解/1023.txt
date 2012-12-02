@@ -1,0 +1,40 @@
+#include<iostream>
+#include<string>
+#include<algorithm>
+#include<vector>
+#include<cmath>
+using namespace std;
+bool pri(int m)
+{if(m%2==0)
+return false;
+int temp=(int)sqrt(1.0*m);
+for(int i=3;i<=temp;i+=2)
+if(m%i==0)
+return false;
+return true;
+}
+int main()
+{int n;
+cin>>n;
+string s;
+while(n)
+{n--;
+cin>>s;
+int shi,ge;
+int i,j;
+int m;
+int temp=-1;
+shi=(s[0]-'A')%3*3;
+ge=(s[1]-'A')%3*3;
+for(i=1;i<=3;i++)
+{for(j=1;j<=3;j++)
+{m=(shi+i)*10+ge+j;
+if(pri(m))
+{temp=m;
+break;}
+}
+if(j<4)
+break;}
+cout<<temp<<endl;
+}
+return 0;}

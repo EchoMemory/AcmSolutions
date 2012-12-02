@@ -1,0 +1,55 @@
+#include<iostream>
+#include<vector>
+#include<fstream>
+using namespace std;
+long long int a[221][11];
+void make(int x,int y,int z,int jia,int ge)
+{
+	int i,k;
+	for(k=0;k<x/y;k++)
+	{
+		if(z>a[x-1-k*y][y-1])
+			z-=a[x-1-k*y][y-1];
+		else
+			break;			
+	}
+	if(ge)
+		cout<<' ';
+	ge++;
+	if(y==1)
+	{
+		cout<<k+jia-1;
+		return ;
+	}
+	cout<<k+jia;
+	
+	make(x-1-k*y,y-1,z,jia+k,ge);
+}
+int main()
+{
+	//ifstream cin("1.txt");
+	for(int i=1;i<221;i++)
+	{
+		a[i][1]=1;
+		a[i][2]=i/2;
+	}
+	for(int i=1;i<221;i++)
+	{
+		for(int j=3;j<=10;j++)
+		{
+			for(int k=0;k<i/j;k++)
+			{
+				a[i][j]+=a[i-1-k*j][j-1];
+			}
+		}
+	}
+	int m,n,c;
+	while(cin>>m>>n>>c)
+	{
+		//cout<<a[m][n]<<endl;
+		make(m,n,c,1,0);
+		cout<<endl;
+	}
+
+
+}

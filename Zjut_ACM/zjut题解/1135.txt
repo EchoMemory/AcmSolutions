@@ -1,0 +1,39 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+vector<vector<long long int> > a(33,vector<long long int>(33,1) );
+void make(int x,int y,long long int z)
+{
+	if(x==0)
+		return ;
+	long long int q=a[x-1][min(x-1,y)];
+	if(z>q)
+	{
+		cout<<1;
+		make(x-1,y-1,z-q);
+	}
+	else
+	{
+		cout<<0;
+		 make(x-1,y,z);
+	}
+}
+int main()
+{
+	for(int i=2;i<33;i++)
+		for(int j=1;j<i;j++)
+			a[i][j]=a[i-1][j-1]+a[i-1][j];
+	for(int i=1;i<33;i++)
+		for(int j=1;j<=i;j++)
+			a[i][j]+=a[i][j-1];
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{
+		int x,y;
+		long long int z;
+		cin>>x>>y>>z;
+		make(x,y,z);
+		cout<<endl;
+	}
+}

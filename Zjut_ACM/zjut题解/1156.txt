@@ -1,0 +1,71 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<cmath>
+#include<fstream>
+#include<algorithm>
+using namespace std;
+unsigned int a1[100]={0,1,10,190,2890,38890,488890,5888890,68888890,788888890};
+unsigned int a2[100]={0,1,20,300,4000,50000,600000,7000000,80000000,900000000};
+unsigned int a3[100]={0,10,110,1110,11110,111110,1111110,11111110,111111110};
+unsigned int make(unsigned int x)
+{
+	if(x<100)
+		return x/10+1;
+	char a[15];
+	sprintf(a,"%u",x);
+	string s=a;
+	if(s[1]!='0')
+		return a2[s.length()-1]*(s[0]-'0')+make(atoi(s.substr(1,s.length()-1).c_str() ) );
+	if(s[1]!='1' && s[0]!='1')
+	{
+		
+		int tem=s[0]-'1';
+		s[0]='1';
+		return a2[s.length()-1]*(tem)+make(atoi(s.c_str() ) );
+	}
+	unsigned int q=a1[s.length()-1];
+	unsigned int i;
+	for(i=1;i<s.length();i++)
+		if(s[i]!='0')
+			break;
+	 unsigned int t=atoi(s.substr(1,s.length()-1).c_str() ) ;
+	 if(t)
+		return	make(t)+q+(i-1)*(t+1)+a3[(int)log10(t*1.0)];
+	 else
+		 return q+(i-1)*(t+1);
+}
+int main()
+{
+	//ofstream cout("1.txt");
+	long long int m,n;
+	while(cin>>m>>n && m>=0)
+	{
+		unsigned int x,y;
+		x=m;
+		y=n;
+		if(x==0)
+			cout<<make(y);
+		else
+			cout<<make(y)-make(x-1);
+		cout<<"\n";
+	}
+	/*int a[100000]={1};
+	for(int i=1;i<100000;i++)
+	{
+		char b[15];
+		sprintf(b,"%d",i);
+		string s=b;
+		int c=count(s.begin(),s.end(),'0');
+		a[i]=a[i-1]+c;
+
+	}
+	int m;
+	for(int m=0;m<100000;m++)
+		if(a[m]!=make(m))
+		{
+		cout<<m<<"  "<<a[m];
+		cout<<"  "<<make(m);
+		cout<<"\n";
+	}*/
+}

@@ -1,0 +1,107 @@
+#include<iostream>
+#include<list>
+#include<fstream>
+#include<string>
+#include<iomanip>
+#include<stack>
+#include<vector>
+#include<algorithm>
+using namespace std ;
+
+int main()
+{
+    int m;
+	//ifstream cin("1.txt");
+        cin>>m;
+        vector<list<int> > a(m);
+        vector<int> b(m);
+        for(int i=0;i<m;i++)
+            a[i].push_back(i);
+        
+        for(int i=0;i<m;i++)
+            b[i]=i;
+        string s;
+        while(cin>>s && s!="quit")
+        {
+            int x,y;
+            
+            list<int>::iterator it1,it2;
+            if(s=="move")
+            {
+                cin>>x>>s>>y;
+                if(x==y || b[x]==b[y])
+                    continue;
+                if(s=="onto")
+                {
+                    for(it1=a[b[x]].begin();*it1!=x;it1++)
+                        ;
+                    a[b[x]].erase(it1);    
+                    for(it2=a[b[y]].begin();*it2!=y;it2++)
+                        ;
+                    it2++;
+                    a[b[y]].insert(it2,x);
+                    b[x]=b[y];
+                }
+                else
+                {
+                    for(it1=a[b[x]].begin();*it1!=x;it1++)
+                        ;
+                    a[b[x]].erase(it1);
+                    a[b[y]].push_back(x);
+                    b[x]=b[y];
+                }
+
+                    
+            }
+            else
+            {
+                cin>>x>>s>>y;
+                if(x==y || b[x]==b[y])
+                    continue;
+                if(s=="onto")
+                {
+                    for(it1=a[b[x]].begin();*it1!=x;it1++)
+                        ;
+                     
+                    for(it2=a[b[y]].begin();*it2!=y;it2++)
+                        ;
+                    it2++;
+                    a[b[y]].insert(it2,it1,a[b[x]].end());
+                    a[b[x]].erase(it1,a[b[x]].end());
+                    it2++;
+                    for(;it2!=a[b[y]].end();it2++)
+                        b[*it2]=b[y];
+                    
+                }
+                else
+                {
+                    for(it1=a[b[x]].begin();*it1!=x;it1++)
+                        ;
+                    
+                    for(it2=a[b[y]].begin();*it2!=y;it2++)
+                        ;
+                    
+                    a[b[y]].insert(a[b[y]].end(),it1,a[b[x]].end());
+
+                    a[b[x]].erase(it1,a[b[x]].end());
+                    for(;*it2!=x;it2++) 
+                        ;
+                    for(;it2!=a[b[y]].end();it2++)
+                        b[*it2]=b[y];
+                }
+
+            }
+
+        }
+
+        for(int i=0;i<m;i++)
+        {
+            cout<<setw(2)<<i<<":";
+           // printf("%d:",i);
+            for(list<int>::iterator it=a[i].begin();it!=a[i].end();it++)
+               // printf(" %d",*it);//
+cout<<" "<<*it;
+            cout<<"\n";
+            //printf("\n");
+        }
+}

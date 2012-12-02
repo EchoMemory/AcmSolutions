@@ -1,0 +1,101 @@
+#include<iostream>
+#include<vector>
+#include<list>
+#include<cmath>
+#include<map>
+#include<algorithm>
+#include<iomanip>
+#include<string>
+using namespace std;
+vector<int> a(9);
+vector<int> b;
+vector<int> c;
+int xiao;
+void back(int t,int sum)
+{
+	if(t==9)
+	{
+		if((a[4]+b[0]+b[2]+b[4]+b[6]+b[8]&3) ||(a[5]+b[2]+b[4]+b[5]+b[8]&3)
+			||(a[7]+b[4]+b[6]+b[7]+b[8]&3) ||(a[8]+b[5]+b[7]+b[8]&3))
+			return;
+			c=b,xiao=sum;
+	}
+	else
+	{
+ /*1         ABDE    
+ 2         ABC
+ 3         BCEF
+ 4         ADG
+ 5         BDEFH
+ 6         CFI
+ 7         DEGH
+ 8         GHI
+ 9         EFHI    
+A 1 2 4
+B 1 2 3 5
+C 2 3 6 
+D 1 4 5 7
+E 1 3 5 7 9
+F 3 5 6 9
+G 4 7 8
+H 5 7 8 9
+I 6 8 9*/
+
+		switch(t)
+		{
+		case 4:if(a[0]+b[0]+b[1]+b[3]&3)
+				   return;
+			break;
+		case 5:if(a[1]+b[0]+b[1]+b[2]+b[4]&3)
+				   return;
+			break;
+		case 6:if(a[2]+b[1]+b[2]+b[5]&3)
+				   return;
+			break;
+		case 7:if(a[3]+b[0]+b[3]+b[4]+b[6]&3)
+				   return;
+			break;
+		case 8:if(a[6]+b[3]+b[6]+b[7]&3)
+				   return ;
+			break;
+		default:
+			break;
+		}
+		for(int i=0;i<4;i++)
+		{
+			//b[t]=i;
+			if(sum+i<=xiao)
+			{
+				b[t]=i;
+				back(t+1,sum+i);
+			}
+			else
+				break;
+		}
+	}
+}
+int main()
+{
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{
+		for(int i=0;i<9;i++)
+			cin>>a[i],a[i]=a[i]%12/3;
+		b.assign(9,0);
+		xiao=1<<29;
+		back(0,0);
+		int g=0;
+		for(int i=0;i<9;i++)
+			if(c[i])
+			{
+				for(int j=0;j<c[i];j++)
+				{
+					if(g++)
+						cout<<" ";
+					cout<<i+1;
+				}
+			}
+		cout<<endl;
+	}
+}

@@ -1,0 +1,39 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<algorithm>
+#include<map>
+using namespace std;
+int main()
+{ //ifstream cin("1.txt");
+	int n;
+  cin >> n;
+  int mmm=0;
+  while( n )
+  {if(mmm)
+  cout<<endl;
+  mmm++;
+	  n--;
+   map<string,map<string,int> > mp;
+   int m;
+   cin >>m;
+   int i;
+   string a,b;
+   int c;
+   for(i=0;i<m;i++)
+   {cin >> b>> a>> c;
+   mp[a][b]+=c;}
+   map<string,map<string,int> >::iterator it;
+   map<string,int> ::iterator ip;
+   for(it=mp.begin();it!=mp.end();it++)
+   {
+	   cout<<it->first<<endl;
+   for(ip=it->second.begin();ip!=it->second.end();ip++)
+	   cout<<"   |----"<<ip->first<<"("<<ip->second<<")"<<endl;
+   }
+
+
+
+  }
+  return 0;
+}

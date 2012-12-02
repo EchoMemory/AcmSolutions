@@ -1,0 +1,25 @@
+#include<iostream>
+#include<vector>
+#include<iomanip>
+#include<sstream>
+#include<string>
+#include<map>
+#include<stack>
+#include<fstream>
+#include<cmath>
+#include<algorithm>
+#include<list>
+using namespace std;
+int main()
+{
+	int m,n;
+	while(cin>>m>>n)
+	{
+		int sum=0;
+		int temp=0;
+		for(int i=1;i<=n;i++)
+			temp=temp*10+m,sum+=temp;
+		cout<<sum<<endl;
+
+	}
+}

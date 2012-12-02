@@ -1,0 +1,51 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+typedef vector<vector<int> >vec;
+
+bool judge(vec&x){
+   for(int i=0;i<x.size();i++){
+       int start=0,end=x.size()-1;
+      for(int j=0;j<x.size()/2;j++){
+        if(x[i][start]!=x[i][end])
+            return  false;
+        start++;end--;
+      }
+   }
+
+    for(int i=0;i<x.size();i++){
+       int start=0,end=x.size()-1;
+      for(int j=0;j<x.size()/2;j++){
+        if(x[start][i]!=x[end][i])
+            return  false;
+        start++;end--;
+      }
+   }
+
+
+    return true;
+}
+
+int main(){
+   int sum;
+   while(cin>>sum){
+      for(int i=0;i<sum;i++){
+         int sum1;cin>>sum1;
+         vector<int>vec1(sum1,0);
+         vec vec2(sum1,vec1);
+         for(int j=0;j<sum1;j++)
+           for(int k=0;k<sum1;k++){
+             int num;cin>>num;
+             vec2[j][k]=num;
+           }
+
+         /*for(int j=0;j<sum1;j++,cout<<endl)
+           for(int k=0;k<sum1;k++){
+               cout<<vec2[j][k]<<" ";
+                }  */
+         if(judge(vec2))cout<<"yes"<<endl;
+         else cout<<"no"<<endl;
+        }
+   }
+}

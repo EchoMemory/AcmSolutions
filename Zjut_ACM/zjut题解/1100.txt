@@ -1,0 +1,74 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<cmath>
+#include<map>
+#include<set>
+#include<algorithm>
+using namespace std;
+
+int m,n,sum;
+int he,zu;
+void back(int t,vector<pair<int,int> >& b,vector<int> & x,int he,int &zu)
+{
+	if(t==b.size())
+	{
+		if(he==m)
+		{
+			int ge=0;
+			zu++;
+			int tick=0;
+			for(int i=0;i<b.size();i++)
+				if(x[i])
+				{
+					for(int j=0;j<x[i];j++)
+					{
+						if(ge)
+							cout<<'+';
+						cout<<b[i].first;
+						ge++;
+					}
+					
+					tick++;
+				}
+				if(tick)
+			cout<<"\n";
+		}
+	}
+	else
+	{	
+		for(int i=b[t].second;i>=0;i--)
+		{
+			x[t]=i;
+			
+			back(t+1,b,x,he+i*b[t].first,zu);
+		}
+	}
+
+}
+int main()
+{
+	while(cin>>m)
+	{
+		cin>>n;
+		if(n==0)
+			break;
+		cout<<"Sums of "<<m<<":\n";
+		int temp;
+		map<int,int> a;
+		for(int i=0;i<n;i++)
+		{
+			cin>>temp;
+			a[temp]++;
+		}
+		vector<pair<int,int> > b(a.begin(),a.end() );
+		reverse(b.begin(),b.end());
+		vector<int> x(b.size());
+		sum=0;
+		zu=0;
+		back(0,b,x,0,zu);
+		if(zu==0)
+			cout<<"NONE\n";
+		
+	}	
+}

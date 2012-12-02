@@ -1,0 +1,42 @@
+#include<iostream>
+#include<vector>
+#include<iomanip>
+#include<sstream>
+#include<string>
+#include<map>
+#include<stack>
+#include<fstream>
+#include<cmath>
+#include<algorithm>
+using namespace std;
+short a[5000];
+int main()
+{
+	int m,n;
+	while(scanf("%d",&m)!=EOF)
+	{
+		scanf("%d",&n);
+		if(m==1)
+		{for(int i=0;i<n;i++)scanf("%d",&m);cout<<(n*(n-1)>>1)<<endl;continue;}
+		memset(a,0,m<<1);
+		int x,sum=0,temp=0;
+		for(int i=0;i<n;i++)
+		{
+			scanf("%d",&x);
+			if(x>=m)
+				x%=m;
+			temp+=x;
+			if(temp>=m)
+				temp-=m;
+			if(x<temp)
+				a[x+m-temp]++;
+			else
+				a[x-temp]++;
+			if(temp)
+				sum+=a[m-temp];
+			else
+				sum+=a[0];
+		}
+		cout<<sum<<endl;
+	}
+}

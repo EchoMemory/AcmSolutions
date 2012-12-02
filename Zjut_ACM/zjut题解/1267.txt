@@ -1,0 +1,39 @@
+#include<iostream>
+#include<vector>
+#include<iomanip>
+#include<sstream>
+#include<string>
+#include<map>
+#include<stack>
+#include<fstream>
+#include<cmath>
+#include<algorithm>
+#include<list>
+using namespace std;
+int main()
+{
+	//ofstream cout("1.txt");
+	int a[4],g=0;
+	for(;cin>>a[0]>>a[1]>>a[2]>>a[3] && (a[0]||a[1]||a[2]||a[3]);)
+	{
+		if(g++)
+			cout<<endl;
+		sort(a,a+4);
+		while(!a[0])
+			next_permutation(a,a+4);
+		int n=a[0],k=0;
+		do
+		{
+			if(a[0]!=n)
+			{
+				k=0,n=a[0];
+				cout<<endl;
+			}
+			if(k++)
+				cout<<" ";
+			for(int i=0;i<4;i++)
+				cout<<a[i];
+		}while(next_permutation(a,a+4));
+		cout<<endl;
+	}
+}

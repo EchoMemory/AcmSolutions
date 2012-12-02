@@ -1,0 +1,23 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{	
+	int m;
+	cin>>m;
+	while(m--)
+	{
+		string s;
+		cin>>s;
+		int zuida=-999999;
+		int sum=0;
+		for(int i=0;i<s.length();i++)
+		{	
+			int x=s[i]-'A'-13;
+			sum+=x;
+			if(sum>zuida)	zuida=sum;
+			if(sum<0)	sum=0;
+		}
+		cout<<zuida<<endl;
+	}
+}

@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+int main(){
+  int n=1, a=1;
+  for(string q; getline(cin, q); n++){
+    cout<<"LC:";
+    if(q=="Hello.")
+      cout<<"Hello.\n";
+    else if(q=="How are you?")
+      cout<<"I'm fine.\n";
+    else if(q=="What's your name?")
+      switch(a){
+        case 1: cout<<"My name is LittleCpp.\n"; a++; break;
+        case 2: cout<<"I think I had told you yet.\n"; a++; break;
+        case 3: cout<<"Oh, you have a poor memory.\n"; break;
+      }
+    else if(q=="How old are you?")
+      cout<<"I'm "<<n<<"'s old.\n";
+    else if(q=="Bye.")
+      break;
+    else
+      cout<<"Sorry, my father haven't taught me how to answer this question.\n";
+  }
+  cout<<"See you.\n";
+}

@@ -1,0 +1,31 @@
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+int main()
+{int n;
+cin>>n;
+while(n)
+{n--;
+int m;
+int a[100];
+cin>>m;
+for(int i=0;i<m;i++)
+cin>>a[i];
+if(m==1 || m==2)
+{cout<<"yes"<<endl;
+continue;}
+sort(a,a+m);
+int d=a[1]-a[0];
+int j;
+for(j=2;j<m;j++)
+{if(a[j]-a[j-1]!=d)
+break;
+}
+if(j==m)
+cout<<"yes";
+else cout<<"no";
+cout<<endl;
+}
+ return 0;
+}

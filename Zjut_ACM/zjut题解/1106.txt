@@ -1,0 +1,38 @@
+#include<iostream>
+#include<list>
+#include<string>
+#include<fstream>
+using namespace std;
+int main()
+{//ifstream cin("1.txt");
+int a,b,c,d,i,j,temp;
+while(1)
+{bool aaa[100][100]={{0}};
+ while(cin>>a>>b>>c>>d && a>=0)
+{if(a>c)
+ {temp=a;
+  a=c;
+  c=temp;
+ }
+ if(b>d)
+ {temp=b;
+  b=d;
+  d=temp;
+ }
+for(i=a;i<c;i++)
+for(j=b;j<d;j++)
+aaa[i][j]=true;
+}
+temp=0;
+for(i=0;i<100;i++)
+for(j=0;j<100;j++)
+if(aaa[i][j])
+temp++;
+cout<<temp<<endl;
+
+if(a==-2)
+break;
+
+}
+return 0;
+}

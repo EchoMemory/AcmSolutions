@@ -1,0 +1,41 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{int m;
+cin>>m;
+vector<bool> array;
+int jie;
+while(m!=0)
+{m--;
+cin>>jie;
+	int mat[100][100];
+	int i,j,k,l,m,n;
+	for(i=0;i<jie;i++)
+		for(j=0;j<jie;j++)
+			cin>>mat[i][j];
+		for(i=0;i<jie;i++){
+		for(j=0;j<(jie+1)/2;j++)
+			if(mat[i][j]!=mat[i][jie-j-1])
+				break;
+           if(j!=(jie+1)/2)
+			   break;}
+		if(i!=jie)
+			array.push_back(false);
+		else
+		{for(i=0;i<(jie+1)/2;i++){
+		for(j=0;j<(jie+1)/2;j++)
+			if(mat[i][j]!=mat[jie-i-1][j])
+				break;
+           if(j!=(jie+1)/2)
+			   break;}
+		if(i!=(jie+1)/2)
+			array.push_back(false);
+		else array.push_back(true);
+}
+}
+for(int k=0;k<array.size();k++)
+if(array[k])cout<<"YES"<<endl;
+else cout<<"NO"<<endl;
+return 0;
+}

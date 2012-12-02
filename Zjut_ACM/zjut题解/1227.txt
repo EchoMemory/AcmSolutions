@@ -1,0 +1,64 @@
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+#include<string>
+#include<stack>
+#include<fstream>
+using namespace std;
+int main()
+{
+	//ifstream cin("1.txt");
+	int m;
+	int zu=0;
+
+	while(cin>>m && m)
+	{
+		if(zu)
+			cout<<"\n";
+		zu++;
+		
+		int x;
+		while(cin>>x && x)
+		{
+			stack<int> a;
+			for(int i=1;i<x;i++)
+				a.push(i);
+			int t=x+1;
+			int y;
+			bool flag=1;
+			for(int i=1;i<m;i++)
+			{
+				cin>>y;
+				if(flag)
+				{
+					if(!a.empty())
+					{
+						if(y==a.top())
+						{	
+							a.pop();
+							continue;
+						}
+						if(y<a.top())
+						{
+							flag=0;
+							continue;
+						}
+					}
+					if(y<t)
+					{
+						flag=0;
+						continue;
+					}
+					for(int i=t;i<y;i++)
+						a.push(i);
+					t=y+1;
+				}
+
+			}
+			if(flag)
+				cout<<"Yes\n";
+			else
+				cout<<"No\n";
+		}
+	}
+}

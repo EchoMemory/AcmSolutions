@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int cishu;
+	cin>>cishu;
+	int zushu;
+	
+	while(cishu)
+	{cin>>zushu;
+	int a,b;
+	int c=2;
+
+	for(int i=0;i<zushu;i++)
+	{	cin>>a>>b;
+	if(a==c)
+	{c=b;
+	continue;}
+	if(b==c)
+	{c=a;
+	continue;}
+	}
+	cout<<c<<endl;
+	
+	
+	
+	
+	cishu--;
+
+	}
+
+
+
+	return 0;
+}

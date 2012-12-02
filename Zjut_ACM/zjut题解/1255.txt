@@ -1,0 +1,21 @@
+#include<iostream>
+#include<string>
+#include<bitset>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	unsigned int a;
+	int sum=0;
+	while(cin>>a)
+	{
+		bitset<32> b(a);
+		string s=b.to_string();
+		string t=s;
+		reverse(s.begin(),s.end());
+		if(s==t)
+			sum++;
+	}
+	cout<<sum<<endl;
+}

@@ -1,0 +1,35 @@
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+int main()
+{int m;
+cin>>m;
+char array[100];
+int cishu=0;
+while(m)
+{cin>>array;
+int len;
+len = strlen(array);
+if(cishu!=0)
+cout<<endl;
+cishu++;
+int aaa[10]={0};
+int i;
+int sum=0;
+for(i=0;i<len;i++)
+{aaa[array[i]-'0']++;
+sum+=(array[i]-'0');
+}
+for(i=0;i<10;i++)
+if(aaa[i]!=0)
+cout<<i<<':'<<aaa[i]<<endl;
+cout<<sum<<endl;
+
+
+
+
+m--;
+}
+return 0;
+}

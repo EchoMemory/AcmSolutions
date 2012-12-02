@@ -1,0 +1,50 @@
+#include <iostream>
+#include<fstream>
+#include<stack>
+using namespace std;
+int main()
+{
+	//ifstream cin("2.txt");
+	
+	int zu;
+	cin>>zu;
+	int n,k;
+	for(int i=0;i<zu;i++)
+	{
+		cin>>n>>k;
+		if(n>k)
+		{
+			cout<<0<<endl;
+			continue;
+		}
+		if(n==1)
+		{
+			cout<<k<<endl;
+			continue;
+		}
+
+		stack<int> a;
+		a.push(k);
+		int ge=k,shi=0;
+		
+		while(ge*n+shi!=k)
+		{
+			int shu=n*ge+shi;
+			ge=shu%10;
+			shi=shu/10;
+			a.push(ge);
+
+
+		}
+		for(;!a.empty();a.pop())
+			cout<<a.top();
+		cout<<endl;
+
+
+
+
+
+
+	}
+	
+}

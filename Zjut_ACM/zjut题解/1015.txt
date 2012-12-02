@@ -1,0 +1,25 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int zuhe(int m,int n)
+{if(m==n) return 1;
+if(n==0) return 1;
+if(n>m/2)return zuhe(m,m-n);
+return zuhe(m-1,n-1)+zuhe(m-1,n);
+}
+
+int main()
+{vector<int>array;
+int m,n;
+
+while(cin>>m>>n && !(m==0&&n==0))
+{array.push_back(zuhe(m,n));
+
+}
+for(int i=0;i<array.size();i++)
+cout<<array[i]<<endl;
+
+	return 0;
+	
+
+}

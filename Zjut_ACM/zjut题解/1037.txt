@@ -1,0 +1,42 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<vector>
+#include<algorithm>
+#include<map>
+using namespace std;
+
+int main()
+{//ifstream cin("1.txt");
+string a,b,c;
+while(getline(cin,a) && getline(cin,b))
+{if(a.size()!=b.size())
+{cout<<"no"<<endl;
+}else{
+	map<char,int> aaa,bbb;
+for(int i=0;i<a.size();i++)
+{aaa[a[i]]++;
+bbb[b[i]]++;
+}
+map<char,int>::iterator it1,it2;
+for(it1=aaa.begin(),it2=bbb.begin();it1!=aaa.end();it1++,it2++)
+if(it1->second !=it2->second)
+break;
+
+if(it1==aaa.end())
+cout<<"yes"<<endl;
+else cout<<"no"<<endl;
+
+
+
+
+
+}
+	if(getline(cin,c) && c==""){}
+else break;
+
+
+}
+return 0;
+
+}

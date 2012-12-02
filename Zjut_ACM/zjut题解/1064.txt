@@ -1,0 +1,39 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+using namespace std;
+int main()
+{//ifstream cin("1.txt");
+string s;
+int max=0;
+int i;
+int a[26]={0};
+while(getline(cin,s))
+{for(i=0;i<s.length();i++)
+{if(s[i]<='Z'&&s[i]>='A')
+ a[s[i]-'A']++;
+}
+}
+for(i=0;i<26;i++)
+{if(a[i]>max)
+max=a[i];
+}
+int j;
+for(j=0;j<max;j++){
+for(i=0;i<25;i++)
+{if(max<=a[i]+j)
+cout<<'*';
+else cout<<' ';
+cout<<' ';}
+if(max<=a[25]+j)
+cout<<'*';
+else cout<<' ';
+cout<<endl;
+
+}
+for(char k='A';k<'Z';k++)
+cout<<k<<' ';
+cout<<'Z';
+cout<<endl;
+return 0;
+}

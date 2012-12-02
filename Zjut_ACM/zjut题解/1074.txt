@@ -1,0 +1,41 @@
+#include<iostream>
+#include<string>
+#include<algorithm>
+#include<vector>
+#include<map>
+using namespace std;
+int main()
+{string s;
+while(cin>>s)
+{if(s.length()==1 && s!="9")
+	{cout<<char(s[0]+1)<<endl;
+     continue;}
+string a=s.substr(0,s.length()/2);
+string b=s.substr((s.length()+1)/2,s.length()/2);
+string temp=a;
+reverse(temp.begin(),temp.end());
+if(temp>b)
+{if(s.length()%2==0)
+cout<<a+temp<<endl;
+else cout<<a<<s[s.length()/2]<<temp<<endl;
+continue;}
+s[(s.length()-1)/2]+=1;
+for(int i=(s.length()-1)/2;i>0;i--)
+{int temp=s[i]-'0';
+s[i]=temp%10+'0';
+s[i-1]+=temp/10;
+}
+
+if(s[0]>'9')
+{s[0]='0';
+string q="1";
+s=q+s;
+}
+a=s.substr(0,s.length()/2);
+temp=a;
+reverse(temp.begin(),temp.end());
+if(s.length()%2==0)
+cout<<a+temp<<endl;
+else cout<<a<<s[s.length()/2]<<temp<<endl;
+}
+return 0;}

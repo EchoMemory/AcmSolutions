@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+string digits[20]={"",
+  "ONE Dollars","TWO Dollars",  "THREE Dollars","FOUR Dollars","FIVE Dollars",
+  "SIX Dollars","SEVEN Dollars","EIGHT Dollars","NINE Dollars","TEN Dollars",
+  "ELEVEN Dollars", "TWELVE Dollars", "THIRTEEN Dollars", "FOURTEEN Dollars",
+  "FIFTEEN Dollars","SIXTEEN Dollars","SEVENTEEN Dollars","EIGHTEEN Dollars","NINETEEN Dollars"
+};
+string tens[10]={"","",
+  "TWENTY","THIRTY","FORTY", "FIFTY","SIXTY","SEVENTY","EIGHTY","NINETY"
+};
+string hunds[10]={"",
+  "ONE HUNDRED","TWO HUNDRED",  "THREE HUNDRED","FOUR HUNDRED","FIVE HUNDRED",
+  "SIX HUNDRED","SEVEN HUNDRED","EIGHT HUNDRED","NINE HUNDRED"
+};int main(){
+  for(double d; cin>>d; ){
+    int dollars = d;
+    if(dollars<=1)
+      cout<<(dollars?"ONE":"ZERO")<<" Dollar";
+    else{
+      int d1=dollars/100, d2=0, d3=dollars%100;
+      if(dollars%100>=20){
+        d2 = dollars/10%10;
+        d3 = dollars%10;
+      }
+      int flag = (d1!=0)*4 + (d2>1)*2 + (d3!=0);
+      switch(flag){
+        case 7: cout<<hunds[d1]<<" ";
+        case 3: cout<<tens[d2]<<" ";
+        case 1: cout<<digits[d3]; break;
+        case 6: cout<<hunds[d1]<<" ";
+        case 2: cout<<tens[d2]; break;
+        case 5: cout<<hunds[d1]<<" "<<digits[d3]; break;
+        case 4: cout<<hunds[d1]; break;
+      }
+    }
+    int cents = ((d+0.005)-dollars)*100;
+    if(cents)
+      cout<<" and "<<cents<<"/100";
+    cout<<"\n";
+  }
+}

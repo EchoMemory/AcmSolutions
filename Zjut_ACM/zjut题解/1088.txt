@@ -1,0 +1,30 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<iomanip>
+#include<map>
+using namespace std;
+int main()
+{
+	//ifstream cin("1.txt");
+	string s;
+	map<string,int> m;
+	int sum=0;
+	while(cin>>s)
+	{
+		if(!isalnum(s[s.length()-1]))
+			s=s.substr(0,s.length()-1);
+
+		m[s]++;
+		sum++;
+	}
+	map<string,int>::iterator iter;
+	
+	for(iter=m.begin();iter!=m.end();iter++)
+	{
+		double  f;
+		f=iter->second*100.0/sum;
+		cout<<setw(15)<<iter->first<<":"<<setw(2)<<iter->second<<" ";	
+		cout<<setw(5)<<setiosflags(ios::fixed)<<setprecision(2)<<f<<"%\n";
+	}
+} 

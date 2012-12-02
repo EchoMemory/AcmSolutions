@@ -1,0 +1,19 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{int bai,shi,ge;
+for(int i=100;i<1000;i++)
+{bai=i/100;
+shi=i/10%10;
+ge=i%10;
+if(i==bai*bai*bai+shi*shi*shi+ge*ge*ge)
+cout<< i<<endl;
+}
+
+
+return 0;
+
+
+}

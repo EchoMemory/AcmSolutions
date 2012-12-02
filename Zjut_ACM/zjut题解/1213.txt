@@ -1,0 +1,44 @@
+#include<iostream>
+#include<string>
+//#include<fstream>
+using namespace std;
+
+int main(){
+  string str;//ifstream cin("File1.txt");
+	int zu;
+	while(cin>>zu && zu){
+  bool flag=true; string sum,temp;;   int carry=0;
+  while(zu--){cin>>str;
+    if(flag){sum=str;flag=false;continue;}
+    int minsize=min(str.size(),sum.size());
+    if(sum.size()<str.size()){
+      temp=str;
+      str=sum;
+      sum=temp;
+    }
+     //cout<<sum<<endl;
+     int j=sum.size()-1;   int i;
+  for(i=minsize-1;i>=0;i--,j--){
+      int a=(str[i]+sum[j])-96+carry;
+      carry=a/10;
+      sum[j]=a%10+48;
+    
+    }
+    while(carry!=0&&j>=0){
+      int a=sum[j]-48+carry;
+      carry=a/10;
+      sum[j]=a%10+48; j--;
+    }
+    if(carry!=0){
+    string temp1(sum.size()+1,'0');
+    temp1[0]=carry+48;
+    for(int o=0;o<sum.size();o++)
+      temp1[o+1]=sum[o];
+      sum=temp1;
+      carry=0;
+    }
+  }
+  cout<<sum<<endl;}
+  //system("pause");
+}
+

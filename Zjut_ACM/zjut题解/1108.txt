@@ -1,0 +1,40 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<algorithm>
+#include<iomanip>
+#include<cmath>
+using namespace std;
+int main()
+{int array[1229]={2,3,5,7,11};
+int i,j,k=5;
+for(i=13;i<10000;i+=2)
+{int temp=(int)sqrt(i*1.0);
+for(j=3;j<=temp;j+=2)
+if(i%j==0)
+break;
+if(j>temp)
+{array[k]=i;
+k++;}
+}
+int shu;
+while(cin>>shu && shu)
+{int cishu=0;
+int k;
+for(k=0;k<1229;k++)
+if(array[k]>shu)
+break;
+for(i=0;i<=k;i++)
+{int temp=shu;
+for(j=i;j<=k;j++)
+{temp-=array[j];
+if(temp<=0)
+break;}
+if(temp==0)
+cishu++;
+}
+cout<<cishu<<endl;
+}
+
+return 0;
+}

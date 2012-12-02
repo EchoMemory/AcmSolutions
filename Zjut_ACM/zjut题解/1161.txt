@@ -1,0 +1,82 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+#include<map>
+using namespace std;
+struct node
+{
+    bool leave;
+    int next[26];
+    void init(){memset(next,-1,sizeof(next));}
+}s[400000];
+int ind;
+char a[40];
+int Len;
+int num[26];
+int b[26][10];
+int d[26];
+int Max;
+void insert()
+{
+    int index=0;
+    for(int i=0;i<Len;i++)
+    {
+		int x=a[i]-'a';
+        if(s[index].next[x]==-1)
+        {
+            s[++ind].init();   
+            s[index].next[x]=ind;
+        }
+        index=s[index].next[x];
+    }
+	s[index].leave=1;
+}
+void back(int index,int x)
+{
+	if(s[index].leave && x>Max)Max=x;
+	for(int i=0;i<26;i++)
+		if(s[index].next[i]!=-1&&d[i]<num[i])
+		{
+			d[i]++;
+			back(s[index].next[i],x+b[i][d[i]-1]);
+			d[i]--;
+		}
+}
+int main()
+{
+  //  freopen("1.txt","r",stdin);
+	int m;
+	while(scanf("%d",&m)!=EOF)
+	{
+		ind=0;
+		s[0].init();
+		for(int i=0;i<m;i++)
+		{  
+			scanf("%s",a);
+			Len=strlen(a);
+			if(Len>10)continue;
+			insert();
+		}
+		int zu;
+		scanf("%d ",&zu);
+		while(zu--)
+		{
+			memset(b,0,sizeof(b));
+			memset(d,0,sizeof(d));
+			memset(num,0,sizeof(num));
+			Max=0;
+			char c;int x;
+			scanf("%d ",&m );
+			for(int i=0;i<m;i++)
+			{
+				scanf("%c%d ",&c,&x);
+				int z=c-'a';
+				b[z][num[z]++]=x;
+			}
+			for(int i=0;i<26;i++)
+				sort(&b[i][0],(&b[i][0])+num[i],greater<int>());
+			back(0,0);
+			printf("%d\n",Max);
+		}
+	}
+}

@@ -1,0 +1,28 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{int m,n;
+while(cin>>m>>n)
+{cout<<m<<' '<<n<<' ';
+int max=0;
+int j,cishu;
+int temp;
+if(m>n)
+{temp=m;
+m=n;
+n=temp;
+}
+for(int i=m;i<=n;i++)
+{
+for(j=i,cishu=1;j>1;cishu++)
+if(j%2)j=3*j+1;
+else j/=2;
+if(cishu>max)
+max=cishu;}
+cout<<max<<endl;
+
+
+}
+return 0;
+}

@@ -1,0 +1,42 @@
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<fstream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+int main ()
+{
+	//ifstream cin("1.txt");
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{
+		int m;
+		cin>>m;
+		vector<int> a(m);
+		for(int i=0;i<m;i++)
+			cin>>a[i];
+		if(m<3)
+		{
+			cout<<"yes"<<endl;
+			continue;
+		}
+		sort(a.begin(),a.end());
+		int cha=a[1]-a[0];
+		int j;
+		for(j=2;j<a.size();j++)
+			if(a[j]!=a[j-1]+cha)
+				break;
+		if(j==a.size())
+		{
+			cout<<"yes"<<endl;
+		}
+		else
+		{
+			cout<<"no"<<endl;
+		}
+
+	}
+} 

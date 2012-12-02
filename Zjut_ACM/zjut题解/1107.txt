@@ -1,0 +1,19 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<iomanip>
+#include<cstdio>
+using namespace std;
+int main()
+{ //ifstream cin("1.txt");
+  int m;
+  cin>>m;
+  float n;
+  while(m)
+  {m--;
+   cin>>n;
+   printf("%08X\n",*(unsigned *)&n);
+   
+}
+  return 0;
+}

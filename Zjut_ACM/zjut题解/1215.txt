@@ -1,0 +1,55 @@
+#include<iostream>
+#include<vector>
+#include<fstream>
+#include<algorithm>
+#include<cmath>
+using namespace std;
+double dis(vector<double>&a,vector<double>&b)
+{
+	return pow(a[0]-b[0],2)+pow(a[1]-b[1],2);
+}
+int main()
+{
+//	ifstream cin("1.txt");
+	const double inf=1e20;
+	int m;
+	int g=0;
+	while(cin>>m && m)
+	{
+		if(g++)
+			cout<<endl;
+		vector<vector<double> > a(m,vector<double>(2));
+		int i,j,k;
+		for(i=0;i<m;i++)
+			cin>>a[i][0]>>a[i][1];
+		sort(a.begin(),a.end());
+		vector<vector<int> >b;
+		double x=inf;
+		for(i=0;i<m;i++)
+		{
+			for(j=i+1;j<m;j++)
+			{
+				double temp=dis(a[i],a[j]);
+				if(temp<x)
+				{
+					x=temp;
+					b.clear();
+					vector<int>c(2);
+					c[0]=i,c[1]=j;
+					b.push_back(c);
+					continue;
+				}
+				if(temp>x)
+					continue;
+				vector<int>c(2);
+				c[0]=i,c[1]=j;
+				b.push_back(c);
+			}
+		}
+		for(i=0;i<b.size();i++)
+		{
+			cout<<"("<<a[b[i][0]][0]<<","<<a[b[i][0]][1]<<") (";
+			cout<<a[b[i][1]][0]<<","<<a[b[i][1]][1]<<")"<<endl;
+		}
+	}
+}

@@ -1,0 +1,82 @@
+#include<iostream>
+#include<set>
+#include<map>
+#include<string>
+#include<vector>
+using namespace std;
+int main()
+{
+	int m,n;
+	int zu=0;
+	while(cin>>m>>n && (m||n))
+	{
+		int big=100000000;
+		vector<vector<int> > a(m,vector<int> (m,0));
+		for(int i=0;i<m;i++)		
+			a[i][i]=big;
+		map<string,int> mp;
+		string s,t;
+		int w;
+		int x=0;
+		for(int i=0;i<n;i++)
+		{
+			cin>>s>>t>>w;
+			if( mp.find(s)==mp.end() )
+			{	
+				mp[s]=x;x++;
+			}
+			if( mp.find(t)==mp.end() )
+			{	
+				mp[t]=x;x++;
+			}
+			a[mp[s]][mp[t]]=w;
+			a[mp[t]][mp[s]]=w;
+		}
+		int v,t2;
+		cin>>s>>t;
+		v=mp[s];
+		t2=mp[t];
+		vector<int> dist(m,0);
+		zu++;
+		int g=0;
+		vector<bool> ss(m,0);
+		for(int i=0;i<m;i++)
+			dist[i]=a[v][i];
+		dist[v]=big;
+		ss[v]=1;
+
+		for(int i=1;i<m;i++)
+		{
+			int temp=0;
+			int u=v;
+			for(int j=0;j<m;j++)
+				if( (!ss[j]) && (dist[j]>temp) )
+				{
+					u=j;
+					temp=dist[j];
+				}
+
+			ss[u]=1;
+			for(int j=0;j<m;j++)
+				if( (!ss[j]) && (a[u][j]>0) )
+				{
+					int newdist=min(dist[u],a[u][j]);
+					if(newdist>dist[j])
+					{
+						dist[j]=newdist;
+					}
+				}
+
+		}
+
+
+
+
+
+		cout<<"Scenario #"<<zu<<"\n";
+		cout<<dist[t2]<<" tons\n\n";
+
+
+		
+	}
+}

@@ -1,0 +1,118 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<fstream>
+using namespace std;
+int a[30]={1,1};
+int b[30];
+
+string make(char ch,int b,int c,vector<string>& vs,int zu,bool zb)
+/////////开始字符 共b个字符 第c种                         父结点  左子树?
+{
+	if(b==1)
+	{
+		//cout<<ch;
+		if(zu)
+		{
+			if(zb)
+			{
+				vs[1][zu-'a']=ch;
+			}
+			else
+				vs[2][zu-'a']=ch;
+		}
+		return "X";
+	}
+	if(b==0)
+		return "";
+	int i;
+	for(i=0;i<b;i++)
+	{
+		int zuo=a[i];
+		int you=a[b-i-1];
+		if(c>zuo * you)
+			c-=zuo * you;
+		else
+			break;
+	}
+	char now =ch+i;
+	string temp="X";
+	//cout<<now;
+	if(zu)
+	{
+		if(zb)
+		{
+			vs[1][zu-'a']=now;
+		}
+		else
+			vs[2][zu-'a']=now;
+	}
+
+	int x=i,y=b-i-1;
+	if(y==0)
+	{
+		string zuo=make(ch,x,c,vs,now,1);
+		if(zuo.size())
+			return "("+zuo+")X";
+		else
+			return "X";
+	}
+	else
+	{
+		for(i=0;i<a[x];i++)
+		{
+			if(c>a[y])
+				c-=a[y];
+			else
+				break;
+		}
+		string zuo=make(ch,x,i+1,vs,now,1);
+		string you=make(char(ch+x+1),y,c,vs,now,0);
+		if(zuo.size())
+			return "("+zuo+")X("+you+")";
+		else
+			return "X("+you+")";
+	}
+}
+int main()
+{
+	//ofstream cout("1.txt");
+	
+	for(int i=2;i<20;i++)
+	{
+		for(int j=0;j<i;j++)
+			a[i]+=a[j]*a[i-1-j];
+	}
+	b[0]=0;
+	b[1]=1;
+	for(int i=2;i<20;i++)
+		b[i]=b[i-1]+a[i];
+	int m,n;
+	/*for(int i=0;i<20;i++)
+	{
+		cout<<i<< "   "<<a[i]<< "   "<<b[i]<<endl;
+		
+	}*/
+	while(cin>>n && n)
+	{
+		
+		for(int i=18;i>=0;i--)
+			if(n>b[i])
+			{	
+				m=i+1;
+				n-=b[i];
+				break;
+			}
+		//cout<<m<<"  "<<n<<endl;
+		vector<string> vs(3,string(m,'*'));
+		for(int i=0;i<m;i++)
+			vs[0][i]=char(i+'a');
+		cout<<make('a',m,n,vs,0,1);
+		cout<<endl;
+		/*for(int i=0;i<m;i++)
+		{
+			cout<<vs[0][i]<<" "<<vs[1][i]<<" "<<vs[2][i]<<endl;
+		}*/		
+	}
+	
+}

@@ -1,0 +1,19 @@
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+int main()
+{
+int array[47];
+array[0]=0;
+array[1]=1;
+for(int i=2;i<47;i++)
+array[i]=array[i-1]+array[i-2];
+
+int m;
+while(cin>>m)
+{cout<<array[m]<<endl;
+}
+return 0;
+}
+

@@ -1,0 +1,36 @@
+#include<iostream>
+#include<string>
+#include<algorithm>
+#include<vector>
+#include<cmath>
+#include<fstream>
+using namespace std;
+struct xue
+{
+string ming;
+int fen[5];
+};
+bool xiao(xue &a,xue &b)
+{int a1=0,b1=0;
+for(int i=0;i<5;i++)
+{a1+=a.fen[i];
+b1+=b.fen[i];
+}
+	return a1>b1;}
+int main()
+{//ifstream cin("1.txt");
+	vector<xue> aaa;
+xue m;
+while(cin>>m.ming>>m.fen[0]>>m.fen[1]
+	  >>m.fen[2]>>m.fen[3]>>m.fen[4])
+{int sum=0;
+	for(int i=0;i<5;i++)
+		sum+=m.fen[i];
+if(sum>=300)
+aaa.push_back(m);
+}
+sort(aaa.begin(),aaa.end(),xiao);
+for(int i=0;i<aaa.size();i++)
+cout<<i+1<<' '<<aaa[i].ming<<endl;
+return 0;
+}

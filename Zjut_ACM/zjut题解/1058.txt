@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+#include<string>
+#include <algorithm>
+#include <cmath>
+#include <fstream>
+using namespace std;
+int main(){
+
+//	ifstream cin("in.txt");
+
+	int num;
+	int x;
+	int a[17];
+	a[1]=0;a[2]=2;
+	for(x=3;x<=16;x++)
+	{
+		a[x]=3*a[x-1]+5*a[x-2];
+	
+	}
+
+	while(cin>>num && num)
+	{		
+		cout<<a[num]<<endl;
+
+
+	}
+
+
+
+
+	return 0;
+
+}

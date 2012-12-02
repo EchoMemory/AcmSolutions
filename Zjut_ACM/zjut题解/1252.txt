@@ -1,0 +1,22 @@
+#include<iostream>
+#include<string>
+#include<bitset>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{
+		long double x;
+		cin>>x;
+		if(x!=(int) x)
+			cout<<(int)x+1;
+		else
+			cout<<(int) x;
+		cout<<endl;
+	}
+}
+

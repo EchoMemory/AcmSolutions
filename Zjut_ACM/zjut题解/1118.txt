@@ -1,0 +1,46 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+int main()
+{//ifstream cin("1.txt");
+	int a[100][100];
+	int m,i,j,k,x,y;
+	cin>>m;
+	int max=-999;
+	for(i=0;i<m;i++)
+		for(j=0;j<m;j++)
+		{cin>>a[i][j];
+
+		if(a[i][j]>max)
+			max=a[i][j];
+		}
+
+	if(max<=0)
+		cout<<max<<endl;
+	else
+	{
+		int sum=0;
+		int b[100];
+		for(i=0;i<m;i++){
+			for(k=0;k<m;k++) b[k]=0;
+			for(j=i;j<m;j++) {
+				for(k=0;k<m;k++) b[k]+=a[j][k];
+				{x=0;
+				y=0;
+				for(int l=0;l<m;l++){
+					if(y>0)y+=b[l];
+					else y=b[l];
+					if(y>x) x=y;}
+
+				}
+				max=x;
+						if(max>sum) sum=max;
+			}
+}
+cout<<sum<<endl;
+}
+
+
+
+
+}

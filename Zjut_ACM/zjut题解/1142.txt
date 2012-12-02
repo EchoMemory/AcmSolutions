@@ -1,0 +1,138 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<set>
+#include<list>
+using namespace std;
+#define N 1001
+#define MAXN 1001
+int p[N];
+int rank[N];
+int n;
+void make()
+{
+	int i;
+	memset(rank,0,sizeof(rank));
+	for(i=1;i<=n;i++)
+		p[i]=i;
+}
+int find(int k)
+{
+	if(p[k]==k) 
+		return p[k];
+	p[k]=find(p[k]);
+	return p[k];
+}
+void hebing(int i,int j)
+{
+	int r1,r2;
+	r1=find(i);
+	r2=find(j);
+	if(r1==r2) return;
+	if(rank[r1]>rank[r2])
+	p[r2]=r1;
+	else
+	{
+		p[r1]=r2; 
+		if(rank[r1]==rank[r2])
+			rank[r2]++;
+	}
+}
+class str
+{
+public:
+	int a,b,c;
+};
+
+void back(int v,vector<int> &color,vector<list<int> > &adj,bool &flag)
+{
+	//0 white 1 gray 2black
+	if(flag)
+		return;
+	color[v]=1;
+	for(list<int>::iterator it=adj[v].begin();it!=adj[v].end();it++)
+	{
+		if(color[*it]==0)
+		{
+			back(*it,color,adj,flag);
+		}
+		if(color[*it]==1)
+		{
+			flag=1;
+			return;
+		}
+		if(flag)
+			return;
+	}
+	color[v]=2;
+
+}
+int main()
+{
+	int zu;
+	cin>>zu;
+	while(zu--)
+	{	
+		int m,d;
+		int a,b;
+		cin>>n>>m;
+		//scanf("%d %d %d",&n,&m,&P);
+		vector<str> daxiao(m);
+		make();
+		for(int i=0;i<m;i++)
+		{ 
+			cin>>a>>b>>d;
+			daxiao[i].a=a;
+			daxiao[i].b=b;
+			daxiao[i].c=d;
+			if(d==0)
+				hebing(a,b);
+		}
+		//vector<vector<int> > top(1001,vector<int>(1001) );
+		vector<list<int> > adj(n+1);
+		//vector<int> rudu(1001);
+		vector<bool> hefa(n+1);
+		vector<int> color(n+1);
+		bool flag=0;
+		for(int i=0;i<m;i++)
+		{
+			hefa[p[daxiao[i].a]]=hefa[p[daxiao[i].b]]=1;
+			if(daxiao[i].c)
+			{
+				if(p[daxiao[i].a]==p[daxiao[i].b])
+				{
+					flag=1;
+					break;
+				}
+				if(daxiao[i].c>0)
+				{
+					adj[p[daxiao[i].a]].push_back(p[daxiao[i].b]);
+				}
+				else
+				{
+					adj[p[daxiao[i].b]].push_back(p[daxiao[i].a]);
+				}					
+			}
+		}
+		if(flag)
+		{
+			cout<<"NO"<<endl;
+			continue;
+		}
+		flag=0;
+		for(int i=1;i<=n;i++)
+		{
+			if(hefa[i] && color[i]==0)
+			{
+				back(i,color,adj,flag);
+				if(flag)
+					break;
+			}
+		}
+		if(flag)
+			cout<<"NO";
+		else
+			cout<<"YES";
+		cout<<endl;
+	}
+}
